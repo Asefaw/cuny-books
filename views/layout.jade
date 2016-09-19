@@ -1,0 +1,24 @@
+doctype html
+html(lang='en')
+  head
+    title Cuny Books
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.css')
+    script(src='/bootstrap/dist/js/bootstrap.js')
+    script(src='/jquery/dist/jquery.js')
+  body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/') Cuny Books
+        ul.nav.navbar-nav
+          li.active
+            a(href='/') Home
+          li
+            a(href='/signup') Signup
+          li
+            a(href='/login') Login 
+    .container
+      block content
