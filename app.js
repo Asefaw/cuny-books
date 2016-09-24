@@ -16,6 +16,7 @@ var dbUrl = 'mongodb://adminuser:adminuser@ds035766.mlab.com:35766/cunybooks';
 var index = require('./controllers/index');
 var  signup = require('./controllers/signup');
 var login = require('./controllers/login');
+const book = require('./controllers/book');
 
 var app = express();
 
@@ -37,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use('/', index);
 app.use('/signup', signup);
 app.use('/login', login);
-
+app.use('/book', book);
 //mongodb
 MongoClient.connect("mongodb://adminuser:adminuser@ds035766.mlab.com:35766/cunybooks", function(err,db){
   if(!err){
