@@ -1,15 +1,26 @@
 CUNY-Books
 
-i started our project as a practice, and you can clone and try it. if you like the starting point we can follow from here.
+Cuny-Books application use case:
+	
+	- allow CUNY students to exchange used text books
 
-in Windows just:
+	- sell used text 
 
-1) git clone https://github.com/Asefaw/cuny-books.git
+	- donate used text books
 
-2) cd cuny-books
+Technologies used:
 
-3) npm start
+	- JavaScript
 
-4) then open http://localhost:3000.
+	- Bootsrap
 
-i haven't tried it on linux yet.
+	- HTML/CSS
+
+	- Mongodb
+
+Web Framework:
+
+	- Node Js
+
+
+
