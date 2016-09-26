@@ -4,26 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-//mongodb
-var mongoose = require('mongoose');
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert'); 
-var dbUrl = 'mongodb://adminuser:adminuser@ds035766.mlab.com:35766/cunybooks';
-//mongoose.connect(dbUrl);
-
+var hbs = require('express-handlebars');
 //controllers
 var index = require('./controllers/index');
 var  signup = require('./controllers/signup');
 var login = require('./controllers/login');
 const book = require('./controllers/book');
-
+const user = require('./controllers/user');
 var app = express();
 
 // view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade'); 
+app.engine('hbs', hbs({extname:'hbs', defaultLayout:'layout.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade'); 
-
+app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -39,14 +34,9 @@ app.use('/', index);
 app.use('/signup', signup);
 app.use('/login', login);
 app.use('/book', book);
+app.use('/users', user);
 //mongodb
-MongoClient.connect("mongodb://adminuser:adminuser@ds035766.mlab.com:35766/cunybooks", function(err,db){
-  if(!err){
-    console.log("Connected");
-  } else{
-    console.log("Databse Connection Faild");
-  }
-});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

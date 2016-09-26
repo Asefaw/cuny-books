@@ -1,0 +1,11 @@
+<div class="container">
+    <h3>List of Users</h3> 
+    <div>
+        {{# each items }}
+            <article class="item">
+                <div>Name: {{ this.fullName }}</div>
+                <div>Email: {{ this.email }}</div> 
+            </article>
+        {{/each}}
+    </div>
+</div>
