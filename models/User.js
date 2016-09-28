@@ -1,12 +1,13 @@
-
 const mongoose =  require('mongoose');
-
-mongoose.connect('mongodb://adminuser:adminuser@ds035766.mlab.com:35766/cunybooks');
+const db = require('../database/db.js'); // for db connection
+ 
 const Schema = mongoose.Schema;
+
 const userSchema = new Schema({
-	fullName: String,
-	email: String,
-	password: String
+	fullName: {type:String, required: true},
+	email: {type:String, required: true},
+	password: String,
+	college: {type: String, required: true}
 });
 module.exports = mongoose.model('user', userSchema);
 

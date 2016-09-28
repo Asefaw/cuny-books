@@ -10,15 +10,15 @@ router.post('/', function(req,res){
 	var userInfo = {
 		fullName: req.body.fullName,
 		email: req.body.email,
-		password: req.body.password
+		password: req.body.password,
+		college: req.body.college
 	}; 
 	var newUser = new user(userInfo);
 
 	 newUser.save(function(err){
 	 	if(err){
 	 		res.send('Error while saving user');
-	 	}else{
-	 		//mongoose.connection.close();
+	 	}else{ 
 	 		res.render('login',{status: 'Account Created'});
 	 	}
 	 });
