@@ -1,9 +1,9 @@
 const mongoose =  require('mongoose');
 const db = require('../database/db.js'); // for db connection
  
-const Schema = mongoose.Schema;
+const User = mongoose.Schema;
 
-const userSchema = new Schema({
+const userSchema = new User({
 	fullName: {type:String, required: true},
 	email: {type:String, required: true},
 	password: String,
