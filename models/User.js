@@ -9,6 +9,21 @@ const userSchema = new Schema({
 	password: String,
 	college: {type: String, required: true}
 });
-module.exports = mongoose.model('user', userSchema);
+
+const userModel = mongoose.model('user', userSchema);
+
+userSchema.pre('save', function (next) {
+    var self = this;
+    userModel.find({email : self.email}, function (err, docs) {
+        if (!docs.length){
+            next();
+        }else{                
+            console.log('user exists: ',self.email);
+            next(new Error("User exists!"));
+        }
+    });
+}) ;
+
+module.exports = userModel;
 
 // module.exports = mongoose.model('User', userSchema);

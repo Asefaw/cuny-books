@@ -1,7 +1,7 @@
 <div class="container">
         {{#if status}}
             <div class="alert alert-success">
-              <strong>{{status}}</strong> Login in using the email and password you just created.
+              <strong>{{status.title}}</strong> {{status.msg}}
             </div>
         {{/if}}
             <form class="form-horizontal" role="form" action="/login" method="POST">

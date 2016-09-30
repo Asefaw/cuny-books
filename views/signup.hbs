@@ -1,4 +1,10 @@
 <div class="container">
+        {{#if status}}
+            <div class="alert alert-danger">
+              <strong>{{status.title}}</strong> {{status.msg}}
+            </div>
+        {{/if}}
+
             <form class="form-horizontal" role="form" action="/signup" method="POST">
                 <h2>Registration Form</h2>
                 <div class="form-group">
@@ -39,7 +45,7 @@
                     <div class="col-sm-9 col-sm-offset-3">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox">I accept <a href="#">terms</a>
+                                <input type="checkbox" name="terms">I accept <a href="#">terms</a>
                             </label>
                         </div>
                     </div>
