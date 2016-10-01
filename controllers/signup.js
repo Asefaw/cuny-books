@@ -12,22 +12,26 @@ router.post('/', function(req,res){
 		email: req.body.email,
 		password: req.body.password,
 		college: req.body.college
-	}; 
-	if(!req.body.terms) {
-		console.log('Agreed to terms');
-		res.render('signup', {status: {msg: 'You must agree with the terms to continue'}});
-	}
+	};  
 
-	var newUser = new user(userInfo);
+	var newUser = new user(userInfo); 
 
-	 newUser.save(function(err){
-	 	if(err){
-	 		res.send('Error while saving user');
-	 	}else{ 
-	 		res.render('login',{status: {title: 'Account Created', msg: 'Login in using the email and password you just created.'}});
+	// check if the new users email already exist
+	//if i does redirect to signup page with error message
+	//if not save new user
+	 user.find({'email':req.body.email},function(err, email){
+	 	if(!email.length){
+	 		 newUser.save(function(err){
+			 	if(err){
+			 		res.send('Error while saving user');
+			 	}else{ 
+			 		res.render('login',{status: {title: 'Account Created', msg: 'Login in using the email and password you just created.'}});
+			 	}
+	 	});  
+	 	}else{
+	 		res.render('signup', {status: {msg: req.body.email + ' Already Exsit'}});
 	 	}
 	 });
-    //res.send('successfully registered')
 });
 
 module.exports = router;

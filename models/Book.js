@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const db = require('../models/db'); // for db connection
+const db = require('../database/db'); // for db connection
 
 const Schema = mongoose.Schema();
 

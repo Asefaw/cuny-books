@@ -12,18 +12,18 @@ const userSchema = new Schema({
 
 const userModel = mongoose.model('user', userSchema);
 
-userSchema.pre('save', function (next) {
-    var self = this;
-    userModel.find({email : self.email}, function (err, docs) {
-        if (!docs.length){
-            next();
-        }else{                
-            console.log('user exists: ',self.email);
-            next(new Error("User exists!"));
-        }
-    });
-}) ;
+// userSchema.pre('save', function (next) {
+//     var self = this;
+//     userModel.find({email : self.email}, function (err, docs) {
+//         if (!docs.length){
+//             next();
+//         }else{                
+//             console.log('user exists: ',self.email);
+//             next(new Error("User exists!"));
+//         }
+//     });
+// }) ;
 
 module.exports = userModel;
 
-// module.exports = mongoose.model('User', userSchema);
+ //module.exports = mongoose.model('User', userSchema);
