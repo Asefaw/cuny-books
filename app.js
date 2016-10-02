@@ -5,12 +5,23 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-handlebars');
+
+//Passport Authentication
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongo = require('mongodb');
+
 //controllers
-var index = require('./controllers/index');
-var  signup = require('./controllers/signup');
-var login = require('./controllers/login');
-const book = require('./controllers/book');
-const user = require('./controllers/user');
+const index =  require('./controllers/index');
+const signup = require('./controllers/signup');
+const login =  require('./controllers/login');
+const logout = require('./controllers/logout');
+const book =   require('./controllers/book');
+const user =   require('./controllers/user');
+ 
 var app = express();
 
 // view engine setup
@@ -29,14 +40,53 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
 
+// Passport initialization
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express Validator for validating user form
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+// Connect Flash
+app.use(flash());
+
+// Global Varibale used for passport
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
+
+//controllers
 app.use(index);
 app.use(signup);
 app.use(login);
+app.use(logout);
 app.use(book);
 app.use(user);
-//mongodb
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,6 +95,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+ 
 // error handlers
 
 // development error handler
