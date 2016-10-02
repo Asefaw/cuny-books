@@ -12,14 +12,18 @@ const userSchema = new User({
 
 const userModel = mongoose.model('user', userSchema);
 
+
+// preprocess hook, this function is excuted before the excution of any mongoose.model.save
 userSchema.pre('save', function (next) {
     var self = this;
+
+    //
     userModel.find({email : self.email}, function (err, docs) {
         if (!docs.length){
             next();
         }else{                
             console.log('user exists: ',self.email);
-            next(new Error("User exists!"));
+            next(new Error("User already exists!"));
         }
     });
 }) ;
