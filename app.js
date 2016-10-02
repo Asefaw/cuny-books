@@ -30,11 +30,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
-app.use('/', index);
-app.use('/signup', signup);
-app.use('/login', login);
-app.use('/book', book);
-app.use('/users', user);
+app.use(index);
+app.use(signup);
+app.use(login);
+app.use(book);
+app.use(user);
 //mongodb
 
 
