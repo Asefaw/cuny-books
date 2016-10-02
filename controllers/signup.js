@@ -2,11 +2,11 @@ var express = require('express');
 var user = require('../models/user');
 var router = express.Router();
 
-router.get('/', function(req, res){
+router.get('/signup', function(req, res){
 	res.render('signup');
 });
 
-router.post('/', function(req,res){
+router.post('/signup', function(req,res){
 	var userInfo = {
 		fullName: req.body.fullName,
 		email: req.body.email,
