@@ -11,4 +11,11 @@
     margin-bottom: 1em;
 }
 
+.footer {
+  position: relative;
+   
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+} 
  
