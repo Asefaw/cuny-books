@@ -26,7 +26,6 @@ const login =  require('./controllers/login');
 const logout = require('./controllers/logout');
 const book =   require('./controllers/book');
 const user =   require('./controllers/user');
-const profile = require('./controllers/profile');
 
 var app = express();
 
@@ -101,7 +100,6 @@ app.use(login);
 app.use(logout);
 app.use(book);
 app.use(user);
-app.use(profile);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

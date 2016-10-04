@@ -18,7 +18,7 @@
     "express": "~4.13.4",
     "express-handlebars": "^3.0.0",
     "express-messages": "*",
-    "express-session": "^1.14.1",
+    "express-session": "*",
     "express-validator": "*",
     "jquery": "^3.1.0",
     "mocha": "^3.0.2",
@@ -26,8 +26,8 @@
     "morgan": "~1.7.0",
     "nodemon": "^1.10.2",
     "passport": "^0.3.2",
-    "passport-http": "*",
     "passport-local": "^1.0.0",
+    "passport-http": "*",
     "passport-local-mongoose": "^4.0.0",
     "passport-mongoose": "0.0.1",
     "serve-favicon": "~2.3.0"

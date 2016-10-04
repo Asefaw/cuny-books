@@ -7,7 +7,7 @@ const router = express.Router();
 //process logout
 
 router.get('/logout', function(req, res,next){
-	
+
 	// Destroy the session after the user is signout
 	req.session.destroy(function(err) {
 		if(err) {
@@ -18,6 +18,7 @@ router.get('/logout', function(req, res,next){
 			res.redirect('/login');
 		}
 	});
+
 })
 
 module.exports = router;

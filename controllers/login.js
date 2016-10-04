@@ -4,7 +4,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const router = express.Router();
 
-router.get('/login', function(req, res, next) {
+
+router.get('/login', function(req, res, next) {  
+
   res.render('login');
 });
 
