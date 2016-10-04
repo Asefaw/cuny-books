@@ -14,3 +14,12 @@
  .alert{
  	text-align: center;
  }
+
+.footer {
+  position: relative;
+   
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+} 
+ 

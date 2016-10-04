@@ -1,18 +1,42 @@
-const mongoose =  require('mongoose');
-const db = require('../database/db.js'); // for db connection
- 
-const User = mongoose.Schema;
+var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
+const db = require('../database/db');
 
-const userSchema = new User({
-	fullName: {type:String, required: true},
-	email: {type:String, required: true},
-	password: String,
-	college: {type: String, required: true}
+// User Schema
+var userSchema = mongoose.Schema({ 
+	fullName: {
+		type: String
+	}, 
+	email: {
+		type: String
+	}, 	
+	password: {
+		type: String
+	}
 });
 
-const userModel = mongoose.model('user', userSchema);
+var User = module.exports = mongoose.model('User', userSchema);
 
+module.exports.createUser = function(newUser, callback){
+	bcrypt.genSalt(10, function(err, salt) {
+	    bcrypt.hash(newUser.password, salt, function(err, hash) {
+	        newUser.password = hash;
+	        newUser.save(callback);
+	    });
+	});
+}
 
-module.exports = userModel;
+module.exports.getUserByEmail = function(email, callback){
+	var query = {email: email};
+	User.findOne(query, callback);
+}
+module.exports.getUserById= function(id, callback){ 
+	User.findById(id, callback);
+}
 
- //module.exports = mongoose.model('User', userSchema);
+module.exports.validatePassword= function(password, hash, callback){
+	bcrypt.compare(password, hash, function(err, isMatch){
+		if(err) throw err;
+		callback(null, isMatch);
+	});
+}

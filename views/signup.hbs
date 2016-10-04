@@ -1,9 +1,14 @@
 <div class="container">
-        {{#if status}}
+    {{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+    {{/if}}
+    {{#if status}}
             <div class="alert alert-danger">
               <strong>{{status.title}}</strong> {{status.msg}}
             </div>
-        {{/if}}
+    {{/if}}
 
             <form class="form-horizontal" role="form" action="/signup" method="POST" >
                 <h2>Registration Form</h2>
@@ -17,7 +22,7 @@
                 <div class="form-group">
                     <label for="email" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-9">
-                        <input type="email" name="email" id="email" placeholder="Email" class="form-control">
+                        <input type="email" name="email"  placeholder="Email" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,7 +50,7 @@
                     <div class="col-sm-9 col-sm-offset-3">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="terms" required >I accept <a href="#">terms</a>
+                                <input type="checkbox" name="terms" required="" >I accept <a href="#">terms</a>
                             </label>
                         </div>
                     </div>
