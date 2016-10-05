@@ -26,7 +26,7 @@
     "morgan": "~1.7.0",
     "nodemon": "^1.10.2",
     "passport": "^0.3.2",
-    "passport-local": "^1.cd0.0",
+    "passport-local": "*",
     "passport-http": "*",
     "passport-local-mongoose": "^4.0.0",
     "passport-mongoose": "0.0.1",
