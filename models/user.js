@@ -44,9 +44,4 @@ module.exports.validatePassword= function(password, hash, callback){
 		if(err) throw err;
 		callback(null, isMatch);
 	});
-}
-
-module.exports.userExist = function(email, callback){
-	var query = {email: email};
-	User.findOne(query, callback);
-}
+} 
