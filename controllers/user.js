@@ -13,7 +13,7 @@ router.get('/user/signup', function(req, res){
  
 
  //--------user registration begins-----
-router.post('/user/create', function(req, res){
+router.post('/user/new', function(req, res){
 	var fullName = req.body.fullName;
 	var email = req.body.email; 
 	var password = req.body.password; 
@@ -118,7 +118,7 @@ router.post('/user/login',
 router.get('/users', function(req, res, next){
 	User.find()
 	.then(function(userList){
-		res.render('users', {items: userList});
+		res.render('users', {users: userList});
 	});
 });
 

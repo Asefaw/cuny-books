@@ -1,19 +1,33 @@
 const mongoose = require('mongoose');
 const db = require('../database/db'); // for db connection
 
-const Book = mongoose.Schema();
+ 
 
-const bookSchema = new Book({
-	owner:String,
-	title: {type: String, required: true, lowercase: true},
-	isbn: {type: String, required: true},
-	autor: String,
-	price: Number,
-	type: String,
-	quantity: String
+const Book = mongoose.Schema({
+	owner: {
+		type: String
+	},
+	title: {
+		type: String, 
+		required: true, 
+		lowercase: true
+	},
+	isbn: {
+		type: String, 
+		required: true
+	},
+	autor: {
+		type: String
+	},
+	price: {
+		type: Number
+	}, 
+	quantity: {
+		type: String
+	}
 });
 
-module.exports = mongoose.model('book', bookSchema);
+module.exports = mongoose.model('Book', Book);
 
 module.exports.saveBook = function(owner,newBook,callback){
 	newBook.save(callback);
