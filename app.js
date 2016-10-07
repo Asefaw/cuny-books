@@ -12,21 +12,15 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
+//var mongo = require('mongodb');
 
 //controllers
-const index =  require('./controllers/index');
-const signup = require('./controllers/signup');
-const login =  require('./controllers/login');
-const logout = require('./controllers/logout');
+const index =  require('./controllers/index'); 
 const book =   require('./controllers/book');
-const user =   require('./controllers/user');
- 
+const user =   require('./controllers/user'); 
 var app = express();
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade'); 
+ 
 app.engine('hbs', hbs({extname:'hbs', defaultLayout:'layout.hbs',layoutsDir: __dirname + '/views/layouts'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -81,13 +75,9 @@ app.use(function (req, res, next) {
 });
 
 //controllers
-app.use(index);
-app.use(signup);
-app.use(login);
-app.use(logout);
+app.use(index); 
 app.use(book);
-app.use(user);
-
+app.use(user); 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

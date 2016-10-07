@@ -37,10 +37,10 @@
       <ul class="nav navbar-nav navbar-right">
         {{#if user}}
         <li><a href="/#">Hello, {{user.fullName}}</a></li>  
-          <li><a href="/logout">Logout</a></li>  
+          <li><a href="/user/logout">Logout</a></li>  
         {{else}}
-          <li><a href="/signup">Signup</a></li>
-          <li><a href="/login">Login</a></li> 
+          <li><a href="/user/signup">Signup</a></li>
+          <li><a href="/user/login">Login</a></li> 
         {{/if}}
       </ul> 
   </div><!-- /.container-fluid -->
