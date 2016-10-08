@@ -1,4 +1,4 @@
-<div class="container">
+{{!-- <div class="container">
 	<div class="jumbotron">
         <h1 class="display-3">Welcome to Cuny Books</h1>
         <p class="lead">Below are soem of the books we have .</p>
@@ -25,4 +25,53 @@
             </form> <!-- /form --> 
         </div>
   </div>
+</div> --}}
+
+<div class='container'>
+    {{!-- left side of the page --}}
+    <div class='col-sm-9'>
+        <div class='min-search-bar'>
+            <input class='search' type='text' placeholder="You can saerch by Title, Author, or ISBN">
+            <button>Find</button>
+        </div>
+
+        <div class='block-1'>
+            <div class='subtitle'><strong>Relevant Books</strong></div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+    {{!-- right side of the page --}}
+    <div class='col-sm-3'>
+        <div class='user-block'>
+            {{#if name}}
+                <div>Student Name {{name}}</div>
+            {{/if}}
+            {{#if college}}
+                <div>CUNY Institute: {{college}}</div>
+            {{/if}}
+            {{#if major}}
+                <div>Major:
+                    {{#each major}}
+                        {{this}},
+                    {{/each}}
+                </div>
+            {{/if}}
+            {{#if minor}}
+
+            {{/if}}
+        </div>
+        <div class='listing-block'>
+            <div>My Listings</div>
+            <hr>
+            {{#each listings}}
+                <div class='my-listing'>
+                    <div class='col-sm-9'>{{this.title}}</div>
+                    <div class='col-sm-3'>{{this.offers}} Offers</div>
+                </div>
+            {{/each}}
+        </div>
+        <a href='/listbook'>List a book</a>
+    </div>
 </div>

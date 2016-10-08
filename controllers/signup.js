@@ -1,40 +1,44 @@
-const express = require('express');
-const User = require('../models/user');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const router = express.Router();
+ var express = require('express');
+var router = express.Router();
+var User = require('../models/user');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+//get home
+
 
 router.get('/signup', function(req, res){
 	res.render('signup');
 });
-
 
 //register user
 router.post('/signup', function(req, res){
 	var fullName = req.body.fullName;
 	var email = req.body.email; 
 	var password = req.body.password; 
+	var college = req.body.college;
 
-	// Validate the form inputs
+	// Validation
 	req.checkBody('fullName', 'Full Name is required').notEmpty();
 	req.checkBody('email', 'Email is required').notEmpty();
 	req.checkBody('email', 'Email is not valid').isEmail(); 
 	req.checkBody('password', 'Password is required').notEmpty(); 
-	 
+	req.checkBody('college', 'College is required').notEmpty(); 
+	req.checkBody('terms', 'Must Agree With Terms').notEmpty(); 
+
 	var errors = req.validationErrors();
 	if(errors){
 		res.render('signup',{
 			errors: errors
 		});
-	};
+	}else{
+		 var newUser = new User({
+		 	fullName: fullName,
+		 	email: email, 
+		 	password: password,
+		 	college: college
+		 });
 
-	var newUser = new User({
-	 	fullName: fullName,
-	 	email: email, 
-	 	password: password
- 	});
-	//check for email duplication
-	User.find({'email':req.body.email},function(err, emailExist){
+		 User.find({'email':email},function(err, emailExist){
 	 	if(!emailExist.length){	 		 
 
 			User.createUser(newUser, function(err, user){
@@ -47,10 +51,9 @@ router.post('/signup', function(req, res){
 			});
 				 
 	 	}else{
-	 		res.render('signup', {status: {msg: req.body.email + ' Email Already Exsit'}});
+	 		res.render('signup', {status: {msg: 'A User with Email: '+email + ' Already Exsit'}});
 	 	}
 	});
-	 
-});
-
+	}
+ }); 
 module.exports = router;

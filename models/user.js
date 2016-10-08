@@ -8,9 +8,14 @@ var userSchema = mongoose.Schema({
 		type: String
 	}, 
 	email: {
-		type: String
+		type:String,
+        required: true,
+        unique: true
 	}, 	
 	password: {
+		type: String
+	},
+	college: {
 		type: String
 	}
 });
@@ -39,4 +44,4 @@ module.exports.validatePassword= function(password, hash, callback){
 		if(err) throw err;
 		callback(null, isMatch);
 	});
-}
+} 
