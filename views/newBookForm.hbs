@@ -1,0 +1,80 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="actie"><a href="/user/:{{user.fullName}}/books">My Books <span class="sr-only">(current)</span></a></li>
+        <li><a href="/newBookForm">Add New Book</a></li> 
+        <li><a href="#">My Profile</a></li> 
+      </ul> 
+       
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">  
+    {{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+    {{/if}}
+    <form class="form-horizontal" role="form" action="/book/new" method="POST"> 
+    <h3 class="display-3">Add Books Below</h3> <br>
+            <div class="form-group">
+                <label for="tirle" class="col-sm-3 control-label">Title</label>
+                <div class="col-sm-9">
+                    <input type="text" name="title" id="email" placeholder="Title" class="form-control">
+                </div>
+            </div> 
+            <div class="form-group">
+                <label for="isbn" class="col-sm-3 control-label">ISBN</label>
+                <div class="col-sm-9">
+                    <input type="text" name="isbn" id="email" placeholder="ISBN #" class="form-control">
+                </div>
+            </div>  
+            <div class="form-group">
+                <label for="author" class="col-sm-3 control-label">Author</label>
+                <div class="col-sm-9">
+                    <input type="text" name="author" id="author" placeholder="Author" class="form-control">
+                </div>
+            </div>  
+            <div class="form-group">
+                <label for="edition" class="col-sm-3 control-label">Edition</label>
+                <div class="col-sm-9">
+                    <input type="text" name="edition" id="edition" placeholder="Edition" class="form-control">
+                </div>
+            </div>  
+            <div class="form-group">
+                <label for="price" class="col-sm-3 control-label">Price</label>
+                <div class="col-sm-9">
+                    <input type="text" name="price" id="email" placeholder="Price $" class="form-control">
+                </div>
+            </div>  
+            <div class="form-group">
+                <label for="quantity" class="col-sm-3 control-label">Quantity</label>
+                <div class="col-sm-9">
+                    <input type="text" name="quantity" id="quantity" placeholder="Quantity" class="form-control">
+                </div>
+            </div>  
+            <div class="form-group"> 
+                <div class="col-sm-9">
+                    <input type="hidden" name="owner" id="owner" value="{{user.fullName}}" class="form-control">
+                </div>
+            </div>  
+            <div class="form-group">
+                <div class=" ">
+                    <button type="submit" class="btn btn-primary btn-block">Add</button>
+                </div>
+            </div>
+    </form> <!-- /form --> 
+        
+</div>

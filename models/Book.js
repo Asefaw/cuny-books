@@ -16,7 +16,10 @@ const Book = mongoose.Schema({
 		type: String, 
 		required: true
 	},
-	autor: {
+	author: {
+		type: String
+	},
+	edition: {
 		type: String
 	},
 	price: {
@@ -29,8 +32,8 @@ const Book = mongoose.Schema({
 
 module.exports = mongoose.model('Book', Book);
 
-module.exports.saveBook = function(owner,newBook,callback){
-	newBook.save(callback);
+module.exports.saveNewBook = function(newBook, callback){  
+	newBook.save(callback); 
 }
 
 module.exports.findBooksByISBN = function(isbn, callback){
@@ -41,4 +44,9 @@ module.exports.findBooksByISBN = function(isbn, callback){
 module.exports.findBooksByTitle = function(title, callback){
 	var query = {title: title};
 	Book.findOne(query,callback);
+}
+
+module.exports.getUserByOwner = function(owner, callback){
+	var query = {owner: owner};
+	return Book.findOne(query, callback);
 }

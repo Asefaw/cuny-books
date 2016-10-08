@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Book = require('../models/book');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 // const mongoose = require('mogoose');
@@ -97,7 +98,11 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/user/login',
-  passport.authenticate('local', {successRedirect:'/books', failureRedirect:'/login', failureFlash:true}),
+  passport.authenticate('local', {
+  	successRedirect:'userHome', 
+  	failureRedirect:'login', 
+  	failureFlash:true
+  }),
   function(req, res) { 
     res.render('books');
   });
@@ -114,12 +119,8 @@ router.post('/user/login',
 });
  //----user Logout begins-----
 
-// get list of all users
-router.get('/users', function(req, res, next){
-	User.find()
-	.then(function(userList){
-		res.render('users', {users: userList});
-	});
+// get user' home page
+router.get('/user/userHome', function(req, res, next){
+	res.render('userHome');
 });
-
 module.exports = router;
