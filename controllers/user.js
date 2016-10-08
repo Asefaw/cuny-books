@@ -8,8 +8,13 @@ const LocalStrategy = require('passport-local').Strategy;
 // mongoose.connect('mongodb://adminuser:adminuser@ds035766.mlab.com:35766/cunybooks');
 
 
-router.get('/user/signup', function(req, res){
-	res.render('signup');
+router.get('/user/signup', function(req, res, next){
+	if(!req.user){
+		res.render('signup');
+	}else{
+		res.redirect('/user/userHome');
+	}
+	 
 });
  
 

@@ -2,12 +2,15 @@ const express = require('express');
 const Book = require('../models/book');
 const router = express.Router();
 
-router.get('/myBooks', function(req, res){
-	res.render('books');
-});
 
 router.get('/book/newBookForm', function(req, res){
-	res.render('newBookForm');
+	//cche if user is loged in
+	if(req.user){
+		res.render('newBookForm');
+	}else{
+		res.redirect('/user/login');
+	}
+	 
 })
 
 router.post('/book/new', function(req, res){
@@ -51,10 +54,15 @@ router.post('/book/new', function(req, res){
 
 //get book for individual user
 router.get('/user/:user/books', function(req, res){
-	var owner = req.params.user; 
-	Book.find({'owner': owner})
- 	.then(function(books){ 
- 		res.render('userHome', {books: books});
- 	}); 
+	if(req.user){
+		var owner = req.params.user; 
+		Book.find({'owner': owner})
+	 	.then(function(books){ 
+	 		res.render('userHome', {books: books});
+	 	});
+	}else{
+		res.redirect('/user/login');
+	}
+	  
 });
 module.exports = router;
