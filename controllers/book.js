@@ -52,6 +52,22 @@ router.post('/book/new', function(req, res){
 
 });
 
+router.post('/book/search', function(req, res){
+	var title = req.body.title;
+	var isbn = req.body.isbn;
+
+	Book.find({'title':title, 'isbn':isbn})
+	.then(function(books){
+		if(books.length){ 
+			res.render('books', {books: books}); 
+		}else{
+			req.flash('error_msg', 'No Books Found');
+			res.redirect('/');
+		}
+		 
+	})
+})
+
 //get book for individual user
 router.get('/user/:user/books', function(req, res){
 	if(req.user){

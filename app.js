@@ -91,8 +91,8 @@ app.use(function (req, res, next) {
 app.use(index); 
 app.use(book);
 app.use(user);
-app.use('/api/users', api.showUsers);   
-app.use('/api/books', api.showBooks);
+app.use('/users', api.showUsers);   
+app.use('/books', api.showBooks);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
