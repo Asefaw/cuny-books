@@ -101,14 +101,14 @@ module.exports = {
             
         });
     },
-    delete(req, res){
-        Book.remove({'isbn': req.params.isbn}, function(err, deletedBook){
+    remove(req, res){ 
+        Book.remove({'isbn': req.params.isbn}, function(err, deleted){
             if(err){
                 res.status(500).json(err);
-            }else{
-                res.status(200).json(deletedBook);
             }
-        });
+            res.status(200).json(deleted);
+        })
+    	   
     }
 };
 
