@@ -13,9 +13,13 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var MongoStore = require('connect-mongo')(session);
-//var mongo = require('mongodb');
+//controllers
+const index =  require('./controllers/index'); 
+const books =   require('./controllers/books');
+const users =   require('./controllers/users'); 
+const api =    require('./controllers/api');
+const login_logout =   require('./controllers/login_logout');  
 
- 
 var app = express();
 
  // Use session for the website. 
@@ -39,13 +43,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
- 
-//controllers
-const index =  require('./controllers/index'); 
-const book =   require('./controllers/book');
-const user =   require('./controllers/user'); 
-const api =    require('./controllers/api');
- 
 
 // Express Session
 app.use(session({
@@ -88,11 +85,20 @@ app.use(function (req, res, next) {
 });
 
 //controllers
+app.use(login_logout);
 app.use(index); 
-app.use(book);
-app.use(user);
-app.use('/users', api.showUsers);   
-app.use('/books', api.showBooks);
+app.use('/api/books', books.index);
+app.use('/book/newBookForm', books.newbook);
+app.use('/book/new', books.create);
+app.use('/book/:user/books', books.myBooks);
+app.use('/book/:isbn', books.show);
+app.use('/book/:isbn/update', books.update);
+app.use('/book/:isbn/delete', books.delete);
+app.use('/user/signup', users.index);
+app.use('/user/new', users.create);
+app.use('/user/:email/delete', users.delete);
+app.use('/user/update:email', users.update); 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

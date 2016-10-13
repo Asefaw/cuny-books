@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../models/book');
 const User = require('../models/user');
-const userC = require('../controllers/user');
+const userC = require('../controllers/login_logout');
  
  //show list of users
  router.showUsers = function(req, res){
