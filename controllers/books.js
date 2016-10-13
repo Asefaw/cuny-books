@@ -13,6 +13,16 @@ module.exports = {
             }
         });
     },
+    search(req, res){
+        Book.find({'title':req.body.title, 'isbn': req.body.isbn}, function(books){
+            if(books){
+                res.render('books', {books: books});
+            }else{
+                req.flash('error_msg', 'No Books Found');
+                res.redirect('/');
+            }
+        }); 
+    },
     //render form to adda new book
     newbook(req, res){
         if(req.user){
@@ -36,9 +46,10 @@ module.exports = {
         Book.find({'isbn': req.params.isbn})
         .then(function(err, book){
             if(err){
-                res.status(500).json(err);
+                req.flash('error_msg', 'No Books Found');
+                res.redirect('/');
             }else{
-                res.status(200).json(book);
+                res.render('books', {books: book})
             }
         })
     }, 
@@ -104,9 +115,10 @@ module.exports = {
     remove(req, res){ 
         Book.remove({'isbn': req.params.isbn}, function(err, deleted){
             if(err){
+                console.log(err);
                 res.status(500).json(err);
             }
-            res.status(200).json(deleted);
+            res.send('done');
         })
     	   
     }

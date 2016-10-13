@@ -17,7 +17,7 @@ var MongoStore = require('connect-mongo')(session);
 const index =  require('./controllers/index'); 
 const books =   require('./controllers/books');
 const users =   require('./controllers/users'); 
-const api =    require('./controllers/api');
+//const api =    require('./controllers/api');
 const login_logout =   require('./controllers/login_logout');  
 
 var app = express();
@@ -88,13 +88,15 @@ app.use(function (req, res, next) {
 app.use(login_logout);
 app.use(index); 
 app.use('/api/books', books.index);
+app.use('/book/search', books.search);
 app.use('/book/newBookForm', books.newbook);
 app.use('/book/new', books.create);
 app.use('/book/:user/books', books.myBooks);
-app.use('/book/:isbn', books.show);
-app.use('/book/:isbn/update', books.update);
+app.use('/book/:isbn', books.show); 
 app.use('/book/:isbn/delete', books.remove);
+app.use('/book/:isbn/update', books.update);
 app.use('/api/users', users.showAll);
+app.use('/user:email', users.show);
 app.use('/user/signup', users.index);
 app.use('/user/new', users.create);
 app.use('/user/:email/delete', users.delete);
