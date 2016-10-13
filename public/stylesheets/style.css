@@ -13,11 +13,11 @@
 
 .footer {
   position: relative;
-   
+
   height: 150px;
   clear:both;
   padding-top:20px;
-} 
+}
 
 .min-search-bar {
   text-align: center;
@@ -31,4 +31,25 @@
 .search {
   width: 60%;
   margin: 0px 20px;
+}
+
+.min-search-bar {
+  border: 2px solid black;
+  padding: 20px 0px;
+}
+
+.min-search-bar > button {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.content-block {
+  min-height: 200px;
+}
+
+.info-block {
+  padding: 20px 0px;
+  min-height: 20px;
+  margin: 10px 0px;
+  border: 2px solid black;
 }

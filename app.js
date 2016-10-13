@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-handlebars');
-
+var mongoose = require('mongoose');
 //Passport Authentication
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
@@ -19,17 +19,17 @@ var MongoStore = require('connect-mongo')(session);       //Initialize MongoStor
 // require db.js to initialize connection for mongoose
 const db = require('./database/db');
 
-//controllers
-const index =  require('./controllers/index');
-const signup = require('./controllers/signup');
-const login =  require('./controllers/login');
-const logout = require('./controllers/logout');
-const book =   require('./controllers/book');
-const user =   require('./controllers/user');
 
+// Use session for the website.
+var MongoStore = require('connect-mongo')(session);
+
+// Initialize express application
 var app = express();
 
-// Use session for the website. 
+// Set local variable title, Tips: local variables can be used in the view template
+app.locals.title = 'CUNY Books';
+
+ // Use session for the website.
 app.use(session({
   secret: 'foo',
   resave: false,
@@ -37,12 +37,10 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection}),      // use the mongoose connection to store session
 }));
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade'); 
 app.engine('hbs', hbs({extname:'hbs', defaultLayout:'layout.hbs',layoutsDir: __dirname + '/views/layouts'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.set('title', 'cunybooks');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -52,6 +50,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
+
+//controllers
+const index =  require('./controllers/index');
+const book =   require('./controllers/book');
+const user =   require('./controllers/user');
+const api =    require('./controllers/api');
+const dashboard = require('./controllers/dashboard');
 
 // Express Session
 app.use(session({
@@ -95,12 +100,11 @@ app.use(function (req, res, next) {
 
 //controllers
 app.use(index);
-app.use(signup);
-app.use(login);
-app.use(logout);
 app.use(book);
 app.use(user);
-
+app.use(dashboard);
+app.use('/api/users', api.showUsers);
+app.use('/api/books', api.showBooks);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -108,7 +112,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
- 
+
 // error handlers
 
 // development error handler
