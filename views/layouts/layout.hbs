@@ -5,12 +5,12 @@
     <meta name="viewport", content="width=device-width, initial-scale=1">
 
     <title>{{ title }}</title>
-     
+
+    <script src="/jquery/dist/jquery.js"> </script>
     <link rel="stylesheet", href="/stylesheets/style.css">
     <link rel="stylesheet", href="/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet", href="/bootstrap/dist/css/bootstrap.min.css">
     <script src="/bootstrap/dist/js/bootstrap.js"> </script>
-    <script src="/jquery/dist/jquery.js"> </script>
     <script src="/bootstrap/js/collapse.js"></script>
 </head>
 <body>
@@ -31,18 +31,19 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">About</a></li> 
+        <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
-      </ul> 
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         {{#if user}}
-        <li><a href="/user/userHome">Hello, {{user.fullName}}</a></li>  
-          <li><a href="/user/logout">Logout</a></li>  
+        <li><a href='/dashboard'>Dashboard</a></li>
+        <li><a href="/user/userHome">Hello, {{user.fullName}}</a></li>
+        <li><a href="/user/logout">Logout</a></li>
         {{else}}
           <li><a href="/user/signup">Signup</a></li>
-          <li><a href="/user/login">Login</a></li> 
+          <li><a href="/user/login">Login</a></li>
         {{/if}}
-      </ul> 
+      </ul>
   </div><!-- /.container-fluid -->
 </nav>
 
@@ -60,20 +61,17 @@
     {{#if error}}
       <div class="alert alert-danger">{{error}}</div>
     {{/if}}
-    
+
     {{{body}}}
- 
+
   </div>
-   
-  </div> 
+
+  </div>
   <hr>
   <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
   <div class="container-fluid">
     <p>&copy; 2016 Cuny-Books, Inc.</p>
   </div>
-  </div>      
+  </div>
 </body>
 </html>
-
-
- 

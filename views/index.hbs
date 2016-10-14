@@ -1,4 +1,13 @@
 <div class="container">
+
+    <div class="alert alert-success">
+        {{#if name}}
+            <p>The current user login is: {{name}}</p>
+        {{else}}
+            <p>You are not login yet. </p>
+        {{/if}}
+    </div>
+    
 	<div class="jumbotron">
         <h1 class="display-3">Welcome to Cuny Books</h1>
         <p class="lead">Cuny books is a place where all cuny studenst can find affordable textbooks from their fellow students. students can buy or exhchage text books from other studensts in thier campus or other cuny colleges.</p>

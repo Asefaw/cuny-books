@@ -17,7 +17,8 @@ module.exports = {
         Book.find({'title':req.body.title, 'isbn': req.body.isbn})
         .then(function(books){
             if(books){
-                res.render('books', {books: books});
+                console.log(books);
+                res.render('searchResult', {results: books});
             }else{
                 req.flash('error_msg', 'No Book Found');
                 res.redirect('/');
@@ -122,6 +123,16 @@ module.exports = {
             res.json(deleted);
         })
     	   
+    },
+    searchAll(req, res) {
+        Book.find(
+            {$text : { $search : req.body.title}}
+        ).select('-_id').exec(function(err, results) {
+            console.log(err);
+            var data = JSON.parse(JSON.stringify(results));
+            console.log(data);
+            res.render('searchResult', {results: data});
+        });
     }
 };
 

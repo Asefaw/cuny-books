@@ -16,6 +16,7 @@
 // router.signup = function(req, res){
 // 	userC.usersignup;
 // }
+
 //  //create new user
 //  router.createUser = function(req,res){
 //  	User.createUser;
