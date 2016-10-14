@@ -5,7 +5,8 @@ const db = require('../database/db');
 // User Schema
 var userSchema = mongoose.Schema({ 
 	fullName: {
-		type: String
+		type: String,
+		required: true,
 	}, 
 	email: {
 		type:String,
@@ -13,10 +14,12 @@ var userSchema = mongoose.Schema({
         unique: true
 	}, 	
 	password: {
-		type: String
+		type: String,
+		required: true
 	},
 	college: {
-		type: String
+		type: String,
+		required: true
 	}
 });
 
