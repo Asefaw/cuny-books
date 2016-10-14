@@ -13,8 +13,9 @@ const bookSchema = mongoose.Schema({
 		lowercase: true
 	},
 	isbn: {
-		type: String,
-		required: true
+		type: String, 
+		required: true,
+        unique: true
 	},
 	author: {
 		type: String

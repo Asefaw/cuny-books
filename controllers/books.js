@@ -13,6 +13,17 @@ module.exports = {
             }
         });
     },
+    search(req, res){
+        Book.find({'title':req.body.title, 'isbn': req.body.isbn})
+        .then(function(books){
+            if(books){
+                res.render('books', {books: books});
+            }else{
+                req.flash('error_msg', 'No Book Found');
+                res.redirect('/');
+            }
+        })   
+    },
     //render form to adda new book
     newbook(req, res){
         if(req.user){
@@ -33,14 +44,14 @@ module.exports = {
     	}
     },
     show(req, res){
-        Book.find({'isbn': req.params.isbn})
-        .then(function(err, book){
+        Book.findById(req.params.isbn, function(err, book){
             if(err){
-                res.status(500).json(err);
+                req.flash('error_msg', 'No Books Found');
+                res.redirect('/');
             }else{
-                res.status(200).json(book);
+                res.json(book);
             }
-        })
+        });
     }, 
     create(req, res){
         // inputs 
@@ -102,11 +113,13 @@ module.exports = {
         });
     },
     remove(req, res){ 
-        Book.remove({'isbn': req.params.isbn}, function(err, deleted){
+        Book.findById(req.params.isbn, function(err, deleted){
             if(err){
+                console.log(err);
                 res.status(500).json(err);
             }
-            res.status(200).json(deleted);
+            deleted.remove();
+            res.json(deleted);
         })
     	   
     },
