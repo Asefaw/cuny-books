@@ -98,6 +98,8 @@ app.use(function (req, res, next) {
 app.use(login_logout);
 app.use(index);
 app.use(dashboard);
+
+//api routes
 app.use('/api/books', books.index);
 app.use('/book/newBookForm', books.newbook);
 app.use('/book/new', books.create);
@@ -111,7 +113,8 @@ app.use('/user/signup', users.index);
 app.use('/user/new', users.create);
 app.use('/user/:email/delete', users.delete);
 app.use('/user/update:email', users.update);
-app.use('/book/search', books.searchAll);
+app.use('/book/search', books.search);
+app.use('/book/searchAll', books.searchAll);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

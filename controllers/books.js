@@ -13,18 +13,18 @@ module.exports = {
             }
         });
     },
-    // search(req, res){
-    //     Book.find({'title':req.body.title, 'isbn': req.body.isbn})
-    //     .then(function(books){
-    //         if(books){
-    //             console.log(books);
-    //             res.render('searchResult', {results: books});
-    //         }else{
-    //             req.flash('error_msg', 'No Book Found');
-    //             res.redirect('/');
-    //         }
-    //     })
-    // },
+    search(req, res){
+        Book.find({'title':req.body.title, 'isbn': req.body.isbn})
+        .then(function(books){
+            if(books){
+                console.log(books);
+                res.render('searchResult', {results: books});
+            }else{
+                req.flash('error_msg', 'No Book Found');
+                res.redirect('/');
+            }
+        })
+    },
     //render form to adda new book
     newbook(req, res){
         if(req.user){
