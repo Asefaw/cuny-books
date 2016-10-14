@@ -12,7 +12,12 @@
         <h1 class="display-3">Welcome to Cuny Books</h1>
         <p class="lead">Cuny books is a place where all cuny studenst can find affordable textbooks from their fellow students. students can buy or exhchage text books from other studensts in thier campus or other cuny colleges.</p>
         <div>
-        <form class="form-horizontal" role="form" action="/search" method="POST"> 
+        {{#if status}}
+            <div class="alert alert-success">
+              <strong>{{status.title}}</strong> {{status.msg}}
+            </div>
+        {{/if}}
+        <form class="form-horizontal" role="form" action="/book/search" method="POST"> 
                 <div class="form-group">
                     <label for="tirle" class="col-sm-3 control-label">Title</label>
                     <div class="col-sm-9">

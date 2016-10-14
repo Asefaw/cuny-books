@@ -33,6 +33,8 @@ const bookSchema = mongoose.Schema({
   }
 });
 
+bookSchema.index({title: 'text', isbn: 'text'});
+
 var Book = module.exports = mongoose.model('Book', bookSchema);
 
 module.exports.saveNewBook = function(newBook, callback){

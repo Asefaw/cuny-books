@@ -23,7 +23,14 @@ const db = require('./database/db');
 // Use session for the website.
 var MongoStore = require('connect-mongo')(session);
 
-// Initialize express application
+//controllers
+const index =  require('./controllers/index'); 
+const books =   require('./controllers/books');
+const users =   require('./controllers/users'); 
+const api =    require('./controllers/api');
+const login_logout =   require('./controllers/login_logout');  
+const dashboard = require('./controllers/dashboard');
+
 var app = express();
 
 // Set local variable title, Tips: local variables can be used in the view template
@@ -50,14 +57,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
-
-//controllers
-const index =  require('./controllers/index');
-const book =   require('./controllers/book');
-const user =   require('./controllers/user');
-const api =    require('./controllers/api');
-const dashboard = require('./controllers/dashboard');
-
 // Express Session
 app.use(session({
     secret: 'secret',
@@ -99,12 +98,23 @@ app.use(function (req, res, next) {
 });
 
 //controllers
-app.use(index);
-app.use(book);
-app.use(user);
+app.use(login_logout);
+app.use(index); 
 app.use(dashboard);
-app.use('/api/users', api.showUsers);
-app.use('/api/books', api.showBooks);
+app.use('/api/books', books.index);
+app.use('/book/newBookForm', books.newbook);
+app.use('/book/new', books.create);
+app.use('/book/:user/books', books.myBooks);
+// app.use('/book/:isbn', books.show);
+app.use('/book/:isbn/update', books.update);
+app.use('/book/:isbn/delete', books.remove);
+app.use('/api/users', users.showAll);
+app.use('/user/signup', users.index);
+app.use('/user/new', users.create);
+app.use('/user/:email/delete', users.delete);
+app.use('/user/update:email', users.update); 
+app.use('/book/search', books.searchAll);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
