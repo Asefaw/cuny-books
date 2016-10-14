@@ -1,4 +1,4 @@
-const express = require('express'); 
+const express = require('express');
 const Book = require('../models/book');
 const router = express.Router();
 
@@ -13,17 +13,18 @@ module.exports = {
             }
         });
     },
-    search(req, res){
-        Book.find({'title':req.body.title, 'isbn': req.body.isbn})
-        .then(function(books){
-            if(books){
-                res.render('books', {books: books});
-            }else{
-                req.flash('error_msg', 'No Book Found');
-                res.redirect('/');
-            }
-        })   
-    },
+    // search(req, res){
+    //     Book.find({'title':req.body.title, 'isbn': req.body.isbn})
+    //     .then(function(books){
+    //         if(books){
+    //             console.log(books);
+    //             res.render('searchResult', {results: books});
+    //         }else{
+    //             req.flash('error_msg', 'No Book Found');
+    //             res.redirect('/');
+    //         }
+    //     })
+    // },
     //render form to adda new book
     newbook(req, res){
         if(req.user){
@@ -34,9 +35,9 @@ module.exports = {
     },
     //show books for individual user
     myBooks(req, res){
-        if(req.user){ 
+        if(req.user){
 		    Book.find({'owner': req.params.user})
-	 	    .then(function(books){ 
+	 	    .then(function(books){
 	 		    res.render('userHome', {books: books});
 	 	    });
     	}else{
@@ -52,24 +53,24 @@ module.exports = {
                 res.json(book);
             }
         });
-    }, 
+    },
     create(req, res){
-        // inputs 
+        // inputs
 		var owner = req.body.owner;
 		var title = req.body.title;
 		var isbn = req.body.isbn;
 		var author = req.body.author;
 		var edition = req.body.edition;
 		var price = req.body.price;
-		var quantity = req.body.quantity;  
+		var quantity = req.body.quantity;
     	// input validation
     	req.checkBody('title', 'Title is required').notEmpty();
     	req.checkBody('isbn', 'ISBN # is required').notEmpty();
-    	req.checkBody('author', 'Author is required').notEmpty(); 
-    	req.checkBody('edition', 'Edition is required').notEmpty(); 
-    	req.checkBody('price', 'Price is required').notEmpty(); 
-    	req.checkBody('quantity', 'Qunatity is required').notEmpty(); 
-    	req.checkBody('owner', 'You Must Login before you this action').notEmpty(); 
+    	req.checkBody('author', 'Author is required').notEmpty();
+    	req.checkBody('edition', 'Edition is required').notEmpty();
+    	req.checkBody('price', 'Price is required').notEmpty();
+    	req.checkBody('quantity', 'Qunatity is required').notEmpty();
+    	req.checkBody('owner', 'You Must Login before you this action').notEmpty();
     	var errors = req.validationErrors();
     	if(errors){
     		res.render('newBookForm', {errors: errors});
@@ -84,7 +85,7 @@ module.exports = {
     			quantity: quantity
     		});
     		Book.saveNewBook(newBook, function(err, book){
-    			if(err) throw err; 
+    			if(err) throw err;
     			req.flash('success_msg', 'Your Book Has Been Saved Click My Books to display');
     			res.redirect('/user/userHome');
     		});
@@ -109,10 +110,10 @@ module.exports = {
                     }
                 });
             }
-            
+
         });
     },
-    remove(req, res){ 
+    remove(req, res){
         Book.findById(req.params.isbn, function(err, deleted){
             if(err){
                 console.log(err);
@@ -121,16 +122,17 @@ module.exports = {
             deleted.remove();
             res.json(deleted);
         })
-    	   
+
     },
     searchAll(req, res) {
+      console.log(req.body.title);
         Book.find(
             {$text : { $search : req.body.title}}
         ).select('-_id').exec(function(err, results) {
             console.log(err);
             var data = JSON.parse(JSON.stringify(results));
+            console.log(data);
             res.render('searchResult', {results: data});
         });
     }
 };
-

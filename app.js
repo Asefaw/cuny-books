@@ -12,9 +12,6 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-var MongoStore = require('connect-mongo')(session);       //Initialize MongoStore to save sessions as cookie
 
 // require db.js to initialize connection for mongoose
 const db = require('./database/db');
@@ -24,11 +21,11 @@ const db = require('./database/db');
 var MongoStore = require('connect-mongo')(session);
 
 //controllers
-const index =  require('./controllers/index'); 
+const index =  require('./controllers/index');
 const books =   require('./controllers/books');
-const users =   require('./controllers/users'); 
-//const api =    require('./controllers/api');
-const login_logout =   require('./controllers/login_logout');  
+const users =   require('./controllers/users');
+// const api =    require('./controllers/api');
+const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
 
 var app = express();
@@ -99,14 +96,13 @@ app.use(function (req, res, next) {
 
 //controllers
 app.use(login_logout);
-app.use(index); 
+app.use(index);
 app.use(dashboard);
 app.use('/api/books', books.index);
-app.use('/book/search', books.search);
 app.use('/book/newBookForm', books.newbook);
 app.use('/book/new', books.create);
 app.use('/book/:user/books', books.myBooks);
-app.use('/book/:isbn', books.show); 
+// app.use('/book/:isbn', books.show);
 app.use('/book/:isbn/delete', books.remove);
 app.use('/book/:isbn/update', books.update);
 app.use('/api/users', users.showAll);
@@ -114,7 +110,7 @@ app.use('/user:email', users.show);
 app.use('/user/signup', users.index);
 app.use('/user/new', users.create);
 app.use('/user/:email/delete', users.delete);
-app.use('/user/update:email', users.update); 
+app.use('/user/update:email', users.update);
 app.use('/book/search', books.searchAll);
 
 // catch 404 and forward to error handler
