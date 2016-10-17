@@ -1,5 +1,10 @@
 Search Results:
 <div>
+{{#if status}}
+    <div class="alert alert-success">
+      <strong>{{status.title}}</strong> {{status.msg}}
+    </div>
+{{/if}}
 {{#each results}}
 	<div class="col-sm-3">
 		{{#if this.image}}

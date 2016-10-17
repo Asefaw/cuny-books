@@ -130,9 +130,20 @@ module.exports = {
             {$text : { $search : req.body.title}}
         ).select('-_id').exec(function(err, results) {
             console.log(err);
-            var data = JSON.parse(JSON.stringify(results));
-            console.log(data);
-            res.render('searchResult', {results: data});
+            if(results.length){
+                var data = JSON.parse(JSON.stringify(results));
+                console.log(data);
+                res.render('searchResult', {results: data});
+            }else if(req.user){
+                req.flash('error_msg', 'No Book found');
+                res.redirect('/user/dashboard');
+            }else{
+                req.flash('error_msg', 'No Book found');
+                res.redirect('/');
+            }
+             
         });
+            
+            
     }
 };
