@@ -14,7 +14,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 router.post('/user/login',
   passport.authenticate('local', {
-  	successRedirect:'userHome', 
+  	successRedirect:'index', 
   	failureRedirect:'login', 
   	failureFlash:true
   }),
