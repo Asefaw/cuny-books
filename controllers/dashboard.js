@@ -2,7 +2,7 @@ const express = require('express');
 const Book = require('../models/book');
 const router = express.Router();
 
-router.get('/dashboard', function(req, res){
+router.get('/user/dashboard', function(req, res){
 
 	var params = {
 		name: '',
@@ -22,13 +22,17 @@ router.get('/dashboard', function(req, res){
 	Book.getBooks(function(books) {
 		params.books = books;
 		console.log(1);
-		abc(params, res);
+		abc(params, res,req);
 	});
 });
 
-function abc(params,res) {
-
-	res.render('dashboard', params);
+function abc(params,res, req) {
+	if(req.user){
+    res.render('dashboard', params);
+  }else{
+    res.render('login');
+  } 
+	 
 }
 
 module.exports = router;
