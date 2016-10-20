@@ -100,8 +100,8 @@ app.use(function (req, res, next) {
 app.use(login_logout);
 app.use(index); 
 app.use(dashboard);
-//app.use('/api/books', books.index);
-app.use('/book/search', books.search);
+app.use('/api/books', books.index);
+//app.use('/book/search', books.search);
 app.use('/book/newBookForm', books.newbook);
 app.use('/book/new', books.create);
 app.use('/book/:user/books', books.myBooks); 
