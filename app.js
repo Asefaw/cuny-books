@@ -102,18 +102,18 @@ app.use(dashboard);
 
 //api routes
 app.use('/api/books', books.index); 
-app.use('/book/newBookForm', books.newbook);
-app.use('/book/new', books.create);
-app.use('/book/:user/books', books.myBooks);
-// app.use('/book/:isbn', books.show);
-app.use('/book/:isbn/delete', books.remove);
-app.use('/book/:isbn/update', books.update);
+app.use('/books/newBookForm', books.newbook);
+app.use('/books/new', books.create);
+app.use('/books/:user/books', books.myBooks);
+ app.use('/books/:id', books.show);
+app.use('/books/:id/delete', books.remove);
+app.use('/books/:id/update', books.update);
 app.use('/api/users', users.showAll);
-app.use('/user:email', users.show);
-app.use('/user/signup', users.index);
-app.use('/user/new', users.create);
-app.use('/user/:email/delete', users.delete);
-app.use('/user/update:email', users.update);
+app.use('/users/:id', users.show);
+app.use('/users/signup', users.index);
+app.use('/users/new', users.create);
+app.use('/users/:email/delete', users.delete);
+app.use('/users/update:email', users.update);
 app.use('/book/search', books.search);
 app.use('/book/searchAll', books.searchAll);
 

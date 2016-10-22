@@ -45,7 +45,7 @@ module.exports = {
     	}
     },
     show(req, res){
-        Book.findById(req.params.isbn, function(err, book){
+        Book.findById(req.params.id, function(err, book){
             if(err){
                 req.flash('error_msg', 'No Books Found');
                 res.redirect('/');
