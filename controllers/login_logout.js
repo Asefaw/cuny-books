@@ -30,14 +30,7 @@ router.post('/user/login',
 	req.flash('success_msg', 'You have been logged Out');
 	res.redirect('login');
 });
- //----user Logout begins-----
+ //----user Logout ends-----
 
-// get user' home page
-router.get('/user/dashboard', function(req, res, next){
-  if(req.user){
-    res.render('dashboard');
-  }else{
-    res.render('login');
-  } 
-});
+ 
 module.exports = router;
