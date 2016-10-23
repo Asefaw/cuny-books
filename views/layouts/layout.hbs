@@ -37,7 +37,7 @@
       <ul class="nav navbar-nav navbar-right">
         {{#if user}}
         <li><a href='/user/dashboard'>Dashboard</a></li>
-        <li><a href="/dashboard">Hello, {{user.fullName}}</a></li>
+        <li><a href="/user/dashboard">Hello, {{user.fullName}}</a></li>
         <li><a href="/user/logout">Logout</a></li>
         {{else}}
           <li><a href="/user/signup">Signup</a></li>
@@ -69,9 +69,10 @@
   </div>
   <hr>
   <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-  <div class="container-fluid">
-    <p>&copy; 2016 Cuny-Books, Inc.</p>
+    <div class="container-fluid">
+      <p>&copy; 2016 Cuny-Books, Inc.</p>
+    </div>
   </div>
-  </div>
+  
 </body>
 </html>

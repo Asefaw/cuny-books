@@ -53,7 +53,28 @@
                     <div class='col-sm-3 listing-offer btn btn-primary'>{{this.offers}} Offers</div>
                 </div>
             {{/each}}
-            <a class='listbook-btn btn btn-success' href='/book/newBookForm'>List a book</a>
+            <a class='listbook-btn btn btn-success' href='/books/newBookForm'>List a book</a>
         </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="offerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">What whould you like to offer for this book?</h4>
+        </div>
+        <div class="modal-body">
+          <textarea style="width:100%;"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Sent Offer</button>
+        </div>
+      </div>
     </div>
 </div>

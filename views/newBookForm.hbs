@@ -39,11 +39,6 @@
                     <input type="text" name="quantity" id="quantity" placeholder="Quantity" class="form-control">
                 </div>
             </div>  
-            <div class="form-group"> 
-                <div class="col-sm-9">
-                    <input type="hidden" name="owner" id="owner" value="{{user.fullName}}" class="form-control">
-                </div>
-            </div>
             <div class="form-group">
                 <label for="major" class="col-sm-3 control-label">Major Field</label>
                 <div class="col-sm-9">
@@ -55,6 +50,11 @@
                     </select>
                 </div>
             </div> 
+            <div class="form-group"> 
+                <div class="col-sm-9">
+                    <input type="hidden" name="owner" id="owner" value="{{user.fullName}}" class="form-control">
+                </div>
+            </div>
             <div class="form-group">
                 <div class=" ">
                     <button type="submit" class="btn btn-primary btn-block">Add</button>

@@ -53,7 +53,11 @@
   margin: 10px 0px;
   border: 2px solid black;
 }
-
+.listing-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .listing-title:hover {
   cursor: default;
 }

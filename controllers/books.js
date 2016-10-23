@@ -46,7 +46,7 @@ module.exports = {
     	}
     },
     show(req, res){
-        Book.findById(req.params.isbn, function(err, book){
+        Book.findById(req.params.id, function(err, book){
             if(err){
                 req.flash('error_msg', 'No Books Found');
                 res.redirect('/');
@@ -135,7 +135,6 @@ module.exports = {
             console.log(err);
             if(results.length){
                 var data = JSON.parse(JSON.stringify(results));
-                console.log(data);
                 res.render('searchResult', {results: data});
             }else if(req.user){
                 req.flash('error_msg', 'No Book found');

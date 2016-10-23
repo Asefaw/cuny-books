@@ -6,7 +6,7 @@ module.exports = {
             var majors = require('../database/majors.js');
             res.render('signup', {majors: majors});
         }else{
-            res.redirect('/user/userHome');
+            res.redirect('/user/dashboard');
         }
     },
     create(req, res){
@@ -56,20 +56,21 @@ module.exports = {
     showAll(req, res){
     	User.find()
     	.then(function(userList){
-    		res.render('users', {users: userList});
+            res.status(200).json(userList);
+    		//res.render('users', {users: userList});
     	})
     	.catch(function(err){
     		res.status(500).json(err);
     	});
     },
     show(req, res){
-    	User.find({'email': req.params.email}, function(err, user){
-    		if(user){
-    			res.status(200).json(user);
-    		}else{
-    			res.status(500).json(err);
-    		}
-    	});
+        User.findById(req.params.id, function(err, user){
+            if(err){
+                res.json(err);
+            }else{
+                res.json(user);
+            }
+        });
     },
     update(req, res){
     	User.find({'email': req.params.email}, function(err, updatedUser){
