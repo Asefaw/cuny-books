@@ -2,9 +2,9 @@ const express = require('express');
 const Book = require('../models/book');
 const router = express.Router();
 
-router.get('/dashboard', function(req, res){
+router.get('/user/dashboard', function(req, res){
 
-	var params = {
+	var user = {
 		name: '',
 		college: '',
 		major: '',
@@ -15,20 +15,33 @@ router.get('/dashboard', function(req, res){
 
 	//cche if user is loged in
 	if(req.user){
-		params.name = req.user.fullName;
-		params.college = req.user.college;
+		user.name = req.user.fullName;
+		user.college = req.user.college;
+		user.major = req.user.major;
 	}
 
 	Book.getBooks(function(books) {
-		params.books = books;
-		console.log(1);
-		abc(params, res);
+		user.books = books;
+		Book.getUserBooks(user.name, function(listings) {
+			user.listings = listings;
+			console.log(listings);
+			Book.getRelBooks(user.major, function(relBooks) {
+				user.relBooks = relBooks;
+				console.log(relBooks);
+				showDashboard(user, res,req);
+			});
+		});
+		
 	});
 });
 
-function abc(params,res) {
-
-	res.render('dashboard', params);
+function showDashboard(user,res, req) {
+	if(req.user){
+		res.render('dashboard', user);
+	}else{
+		res.render('login');
+	} 
+	 
 }
 
 module.exports = router;

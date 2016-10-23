@@ -7,12 +7,12 @@
                 <button type="submit" class="btn btn-primary btn-block">Search</button>
             </form> <!-- /form -->
         </div>
-
+        
         <div class='content-block block-1'>
             <div class='subtitle'><strong>Relevant Books</strong></div>
-            <div class="">
+            <div class="row">
               {{#if major}}
-
+                {{showBooks relBooks}}
               {{else}}
                 <div style='text-align:center'class="">
                   <span class='glyphicon glyphicon-eye-close'></span>
@@ -24,24 +24,7 @@
         <div class='content-block block-2'>
           <div class='subtitle'><strong>All Books</strong></div>
           <div class="">
-            {{#each books}}
-              <div class="col-sm-3">
-                {{#if this.image}}
-                  <div class="">
-                    <img src="{{this.image}}" alt="" />
-                  </div>
-                {{else}}
-                  <div class="">
-                    <img src="http://vignette3.wikia.nocookie.net/galaxylife/images/7/7c/Noimage.png/revision/latest?cb=20120622041841" alt="" />
-                  </div>
-                {{/if}}
-                <div>Title: {{ this.title }}</div>
-                <div>Edition: {{ this.edition}}</div>
-                <div>Author: {{ this.author}}</div>
-                <div>Owner: {{ this.owner}} </div>
-                <div>price: {{ this.price}}</div>
-              </div>
-            {{/each}}
+            {{showBooks books}}
           </div>
         </div>
     </div>
@@ -55,11 +38,7 @@
                 <div>CUNY Institute: {{college}}</div>
             {{/if}}
             {{#if major}}
-                <div>Major:
-                    {{#each major}}
-                        {{this}},
-                    {{/each}}
-                </div>
+                <div>Major:{{major}}</div>
             {{/if}}
             {{#if minor}}
 
@@ -70,11 +49,11 @@
             <hr>
             {{#each listings}}
                 <div class='my-listing'>
-                    <div class='col-sm-9'>{{this.title}}</div>
-                    <div class='col-sm-3'>{{this.offers}} Offers</div>
+                    <div class='col-sm-9 listing-title btn btn-info'>{{this.title}}</div>
+                    <div class='col-sm-3 listing-offer btn btn-primary'>{{this.offers}} Offers</div>
                 </div>
             {{/each}}
-            <a href='/book/newBookForm'>List a book</a>
+            <a class='listbook-btn btn btn-success' href='/book/newBookForm'>List a book</a>
         </div>
     </div>
 </div>

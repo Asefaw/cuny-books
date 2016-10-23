@@ -53,3 +53,16 @@
   margin: 10px 0px;
   border: 2px solid black;
 }
+
+.listing-title:hover {
+  cursor: default;
+}
+.my-listing > div, .my-listing > div:hover {
+  background-color: transparent;
+  color: black;
+}
+
+.listbook-btn {
+  width: 100%;
+  margin-top: 15px;
+}

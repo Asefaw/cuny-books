@@ -14,7 +14,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 router.post('/user/login',
   passport.authenticate('local', {
-  	successRedirect:'index', 
+  	successRedirect:'dashboard', 
   	failureRedirect:'login', 
   	failureFlash:true
   }),
@@ -33,7 +33,12 @@ router.post('/user/login',
  //----user Logout begins-----
 
 // get user' home page
-router.get('/user/userHome', function(req, res, next){
-	res.render('userHome');
-});
+// router.get('/user/dashboard', function(req, res, next){
+//   if(req.user){
+//     res.render('dashboard');
+//   }else{
+//     res.render('login');
+//   } 
+// });
+
 module.exports = router;

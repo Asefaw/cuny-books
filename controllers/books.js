@@ -28,7 +28,8 @@ module.exports = {
     //render form to adda new book
     newbook(req, res){
         if(req.user){
-		    res.render('newBookForm');
+            var majors = require('../database/majors.js');
+		    res.render('newBookForm', {majors: majors});
     	}else{
     		res.redirect('/user/login');
     	}
@@ -63,6 +64,7 @@ module.exports = {
 		var edition = req.body.edition;
 		var price = req.body.price;
 		var quantity = req.body.quantity;
+        var major = req.body.major;
     	// input validation
     	req.checkBody('title', 'Title is required').notEmpty();
     	req.checkBody('isbn', 'ISBN # is required').notEmpty();
@@ -82,7 +84,8 @@ module.exports = {
     			author: author,
     			edition: edition,
     			price: price,
-    			quantity: quantity
+    			quantity: quantity,
+                major: major
     		});
     		Book.saveNewBook(newBook, function(err, book){
     			if(err) throw err;
@@ -130,9 +133,20 @@ module.exports = {
             {$text : { $search : req.body.title}}
         ).select('-_id').exec(function(err, results) {
             console.log(err);
-            var data = JSON.parse(JSON.stringify(results));
-            console.log(data);
-            res.render('searchResult', {results: data});
+            if(results.length){
+                var data = JSON.parse(JSON.stringify(results));
+                console.log(data);
+                res.render('searchResult', {results: data});
+            }else if(req.user){
+                req.flash('error_msg', 'No Book found');
+                res.redirect('/user/dashboard');
+            }else{
+                req.flash('error_msg', 'No Book found');
+                res.redirect('/');
+            }
+             
         });
+            
+            
     }
 };

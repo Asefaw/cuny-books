@@ -33,6 +33,8 @@ var app = express();
 // Set local variable title, Tips: local variables can be used in the view template
 app.locals.title = 'CUNY Books';
 
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
  // Use session for the website.
 app.use(session({
   secret: 'foo',
@@ -41,7 +43,10 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection}),      // use the mongoose connection to store session
 }));
 
-app.engine('hbs', hbs({extname:'hbs', defaultLayout:'layout.hbs',layoutsDir: __dirname + '/views/layouts'}));
+//Custom express-handlebar helper functions
+var helpers = require('./customHelpers');
+
+app.engine('hbs', hbs({extname:'hbs', defaultLayout:'layout.hbs',layoutsDir: __dirname + '/views/layouts', helpers: helpers}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.set('title', 'cunybooks');

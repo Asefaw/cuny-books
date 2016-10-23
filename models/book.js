@@ -28,9 +28,16 @@ const bookSchema = mongoose.Schema({
 	quantity: {
 		type: String
 	},
-  image: {
-    type: String
-  }
+	image: {
+		type: String
+	},
+	major: {
+		type: String
+	},
+	sold: {
+		type: Boolean,
+		default: false
+	}
 });
 
 bookSchema.index({title: 'text', isbn: 'text'});
@@ -58,4 +65,15 @@ module.exports.getUserByOwner = function(owner, callback){
 
 module.exports.getBooks = function(callback) {
 	Book.find().then(callback);
+}
+
+module.exports.getUserBooks = function(owner, callback) {
+	var query = {owner: owner};
+	// return Book.find(query).exec(callback);		//With err param (err, results)
+	return Book.find(query).then(callback);		//Without err param(results)
+}
+
+module.exports.getRelBooks = function(major, callback) {
+	var query = {major: major};
+	return Book.find(query).then(callback);
 }

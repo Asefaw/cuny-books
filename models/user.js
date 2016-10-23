@@ -20,6 +20,9 @@ var userSchema = mongoose.Schema({
 	college: {
 		type: String,
 		required: true
+	},
+	major: {
+		type: String
 	}
 });
 
