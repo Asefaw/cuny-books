@@ -36,7 +36,7 @@ app.locals.title = 'CUNY Books';
 app.use(session({
   secret: 'foo',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection}),      // use the mongoose connection to store session
 }));
 
@@ -54,11 +54,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 // Express Session
-app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
-}));
+// app.use(session({
+//     secret: 'secret',
+//     saveUninitialized: true,
+//     resave: true
+// }));
 
 // Passport initialization
 app.use(passport.initialize());
