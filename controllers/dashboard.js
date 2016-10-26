@@ -1,5 +1,6 @@
 const express = require('express');
 const Book = require('../models/book');
+const Offer = require('../models/offer');
 const router = express.Router();
 
 router.get('/user/dashboard', function(req, res){
@@ -24,14 +25,29 @@ router.get('/user/dashboard', function(req, res){
 		user.books = books;
 		Book.getUserBooks(user.name, function(listings) {
 			user.listings = listings;
-			console.log(listings);
-			Book.getRelBooks(user.major, function(relBooks) {
-				user.relBooks = relBooks;
-				console.log(relBooks);
-				showDashboard(user, res,req);
+			var book_ids = [];
+			for(var idx in listings) {
+				book_ids.push(listings[idx]._id);
+			}
+			console.log(book_ids);
+			Offer.getOffers(book_ids, function(offers) {
+				console.log(offers);
+				for(var idx in offers) {
+					for(var key in user.listings) {
+						if(offers[idx].book_id == user.listings[key]._id) {
+							user.listings[key].offerCount++;
+						}
+					}
+				}
+				console.log('User listings');
+				console.log(user.listings);
+				Book.getRelBooks(user.major, function(relBooks) {
+					user.relBooks = relBooks;
+					// console.log(relBooks);
+					showDashboard(user, res,req);
+				});
 			});
 		});
-		
 	});
 });
 

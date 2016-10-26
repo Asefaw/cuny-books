@@ -47,16 +47,13 @@
         <div class='info-block listing-block'>
             <div>My Listings</div>
             <hr>
-            {{#each listings}}
-                <div class='my-listing'>
-                    <div class='col-sm-9 listing-title btn btn-info'>{{this.title}}</div>
-                    <div class='col-sm-3 listing-offer btn btn-primary'>{{this.offers}} Offers</div>
-                </div>
-            {{/each}}
+            {{showListings listings}}
             <a class='listbook-btn btn btn-success' href='/books/newBookForm'>List a book</a>
         </div>
     </div>
 </div>
+
+<script src="/javascripts/offers.js"></script>
 
 <!-- Modal -->
 <div class="modal fade" id="offerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -69,11 +66,13 @@
           <h4 class="modal-title" id="myModalLabel">What whould you like to offer for this book?</h4>
         </div>
         <div class="modal-body">
-          <textarea style="width:100%;"></textarea>
+          <textarea form="offerForm" name="offerMsg" style="width:100%;"></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Sent Offer</button>
+          <form style="display:inline-block;" id="offerForm" method="post" action="/book/offers/new">
+            <input type="submit" class="btn btn-primary" value="Sent Offer">
+          </form>
         </div>
       </div>
     </div>

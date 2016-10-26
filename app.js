@@ -23,6 +23,7 @@ const MongoStore = require('connect-mongo')(session);
 const index =  require('./controllers/index');
 const books =   require('./controllers/books');
 const users =   require('./controllers/users');
+const offers = require('./controllers/offers');
 // const api =    require('./controllers/api');
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
@@ -38,7 +39,7 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(session({
   secret: 'foo',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection}),      // use the mongoose connection to store session
 }));
 
@@ -59,11 +60,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 // Express Session
-app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
-}));
+// app.use(session({
+//     secret: 'secret',
+//     saveUninitialized: true,
+//     resave: true
+// }));
 
 // Passport initialization
 app.use(passport.initialize());
@@ -107,8 +108,8 @@ app.use(dashboard);
 //api routes
 app.use('/api/books', books.index); 
 app.use('/books/newBookForm', books.newbook);
-app.use('/books/new', books.create);
-app.use('/books/:user/books', books.myBooks);
+app.use('/book/new', books.create);
+app.use('/book/:user/books', books.myBooks);
 // app.use('/books/:id', books.show);
 app.use('/books/:id/delete', books.remove);
 app.use('/books/:id/update', books.update);
@@ -120,6 +121,8 @@ app.use('/users/:email/delete', users.delete);
 app.use('/users/update:email', users.update);
 app.use('/book/search', books.search);
 app.use('/book/searchAll', books.searchAll);
+app.use('/api/offers', offers.index);
+app.use('/book/offers/new', offers.newOffer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -37,6 +37,10 @@ const bookSchema = mongoose.Schema({
 	sold: {
 		type: Boolean,
 		default: false
+	},
+	offerCount: {
+		type: Number,
+		default: 0
 	}
 });
 
