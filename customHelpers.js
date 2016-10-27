@@ -15,7 +15,7 @@ module.exports =
 			str += '<div class="">' + imgSrc + '</div>';
 			str += '<div>Title: ' + data[i].title + ' edition ' + data[i].edition + ' by ' + data[i].author + '</div>';
 			str += '<div>Price: ' + data[i].price + '</div>';
-			str += '<a class="btn btn-primary" href="/book/'+data[i]._id+'/carts">Buy</a> &nbsp;';
+			str += '<a class="btn btn-primary" href="/book/'+data[i]._id+'/carts">Add To Cart</a> &nbsp;';
 			str += '<div class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Offer'
 			str += '<div style="display:none;">'+ data[i]._id +'</div>'
 			str += '</div>'
