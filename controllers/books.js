@@ -38,7 +38,7 @@ module.exports = {
         if(req.user){
 		    Book.find({'owner': req.params.user})
 	 	    .then(function(books){
-	 		    res.render('userHome', {books: books});
+	 		    res.render('dashboard', {books: books});
 	 	    });
     	}else{
     		res.redirect('/user/login');
@@ -87,7 +87,7 @@ module.exports = {
     		Book.saveNewBook(newBook, function(err, book){
     			if(err) throw err;
     			req.flash('success_msg', 'Your Book Has Been Saved Click My Books to display');
-    			res.redirect('/user/userHome');
+    			res.redirect('/user/dashboard');
     		});
     	}
     },
