@@ -39,7 +39,7 @@ module.exports = {
         if(req.user){
 		    Book.find({'owner': req.params.user})
 	 	    .then(function(books){
-	 		    res.render('userHome', {books: books});
+	 		    res.render('dashboard', {books: books});
 	 	    });
     	}else{
     		res.redirect('/user/login');
