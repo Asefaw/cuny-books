@@ -23,7 +23,7 @@ const MongoStore = require('connect-mongo')(session);
 const index =  require('./controllers/index');
 const books =   require('./controllers/books');
 const users =   require('./controllers/users');
-// const api =    require('./controllers/api');
+ const carts =    require('./controllers/carts');
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
 
@@ -115,7 +115,8 @@ app.use('/users/:email/delete', users.delete);
 app.use('/users/update:email', users.update);
 app.use('/book/search', books.search);
 app.use('/book/searchAll', books.searchAll);
-
+//checkout
+app.use('/book/:id/carts', carts.index);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -40,7 +40,7 @@
                 <div>Author: {{ this.author}}</div>
                 <div>Owner: {{ this.owner}} </div>
                 <div>price: {{ this.price}}</div>
-                <div><a href="#" class="btn btn-primary btn-block"> Buy This Book</a></div>
+                <div><a href="/book/:{{this.id}}/carts" class="btn btn-primary btn-block"> Add to Cart</a></div>
               </div>
             {{/each}}
           </div>
