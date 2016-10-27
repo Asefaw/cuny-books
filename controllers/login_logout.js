@@ -31,6 +31,5 @@ router.post('/user/login',
 	res.redirect('login');
 });
  //----user Logout ends-----
-
  
 module.exports = router;

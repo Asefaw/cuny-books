@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const db = require('../database/db'); // for db connection
 
-const transSchema = mongoose.Schema( {
-   buyer: {
+  
+const transactionSchema = mongoose.Schema({
+	buyer: {
        type: String,
        required: true
    },
@@ -21,4 +22,5 @@ const transSchema = mongoose.Schema( {
    // we may need to save customer's credit card info
 });
 
-module.exports = mongoose.model('Transaction', transSchema);
+module.exports = mongoose.model('Transaction', transactionSchema);
+

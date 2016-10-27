@@ -3,7 +3,8 @@ const User = require('../models/user');
 module.exports = {
     index(req, res){
         if(!req.user){
-            res.render('signup');
+            var majors = require('../database/majors.js');
+            res.render('signup', {majors: majors});
         }else{
             res.redirect('/user/dashboard');
         }
@@ -13,7 +14,7 @@ module.exports = {
 		var email = req.body.email; 
 		var password = req.body.password; 
 		var college = req.body.college;
-	
+	    var major = req.body.major;
 		// Validation
 		req.checkBody('fullName', 'Full Name is required').notEmpty();
 		req.checkBody('email', 'Email is required').notEmpty();
@@ -32,7 +33,8 @@ module.exports = {
 			 	fullName: fullName,
 			 	email: email, 
 			 	password: password,
-			 	college: college
+			 	college: college,
+                major: major
 			 });
 	
 			 User.find({'email':email},function(err, emailExist){
