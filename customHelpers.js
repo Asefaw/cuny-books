@@ -22,7 +22,8 @@ module.exports =
 			str += '</div>';
 		}
 		str += '</div>';
-
+		str += '<script src="/javascripts/offers.js"></script>'
+		
 		return new hbs.SafeString(str);
 	},
 	showListings: function(data) {
