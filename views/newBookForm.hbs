@@ -1,5 +1,10 @@
 <div class='container'>
     {{!-- left side of the page --}}
+    {{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+    {{/if}}
     <div class='col-sm-9'> 
         <form class="form-horizontal" role="form" action="/books/new" method="POST"> 
             <h3 class="display-3">Add Books Below</h3> <br>
