@@ -125,7 +125,7 @@ app.use('/book/search', books.search);
 app.use('/book/searchAll', books.searchAll);
 
 //checkout
-app.use('/book/:id/carts', carts.index);
+app.use('/books/:id', books.show);
 app.use('/api/offers', offers.index);
 app.use('/book/offers/new', offers.newOffer);
 

@@ -46,12 +46,14 @@ module.exports = {
     	}
     },
     show(req, res){
-        Book.findById(req.params.id, function(err, book){
+        Book.findById(req.params.id, function(err, books){
             if(err){
+                 
                 req.flash('error_msg', 'No Books Found');
                 res.redirect('/');
             }else{
-                res.json(book);
+                //res.json(books);
+                 res.render('bookDetails', {books: books});
             }
         });
     },

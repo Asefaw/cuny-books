@@ -10,9 +10,15 @@ const cartSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    count: {
+    quantity: {
         type: Number
-    }
+    },
+     total: {
+        type: Number
+     }
 });
 
 module.exports = mongoose.model('Cart', cartSchema);
+module.exports.addBook = function(book, callback){
+    book.save(callback);
+} 

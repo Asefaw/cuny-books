@@ -12,8 +12,8 @@ module.exports =
 			if(data.image) {
 				imgSrc = '<img src="' + data.image + '"/>';
 			}
-			str += '<div class="">' + imgSrc + '</div>';
-			str += '<div>Title: ' + data[i].title + ' edition ' + data[i].edition + ' by ' + data[i].author + '</div>';
+			str += '<div class=""><a href="/books/'+data[i]._id+'">' + imgSrc + '</a></div>';
+			str += '<div><a href="/books/'+data[i]._id+'">Title</a>: ' + data[i].title + ' edition ' + data[i].edition + ' by ' + data[i].author + '</div>';
 			str += '<div>Price: ' + data[i].price + '</div>';
 			str += '<a class="btn btn-primary" href="/book/'+data[i]._id+'/carts">Add To Cart</a> &nbsp;';
 			str += '<div class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Offer'

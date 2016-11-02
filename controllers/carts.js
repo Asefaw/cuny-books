@@ -1,9 +1,15 @@
 const express = require('express');
 const Book = require('../models/book');
 const User = require('../models/user');
+const Cart = require('../models/cart');
 
+function loadShoppingCart(res){
+	Cart.find(function(err, books){ 
+
+	});
+}
 module.exports = {
-  index(req, res) {
-      res.render('carts', {error_msg: 'Feature to be Implemented....'});
+  add(req, res) { 
+     
   }  
 };
