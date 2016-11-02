@@ -3,14 +3,37 @@
     <div align="center">
     </div>
 	<div class="jumbotron">   
-            <div>Title: {{ books.title }}</div>
-            <div>ISBN #: {{ books.isbn }}</div>
-            <div>Author: {{ books.author}}</div>
-            <div>Edition: {{ books.edition}}</div>
-            <div>Owner: {{ books.owner}} </div>
-            <div>price: {{ books.price}}</div><br> 
-            <div> <a type="submit" href="/user/login" class="btn btn-primary">Add to Cart</a></div><br>  
+            <div>Title: {{ book.title }}</div>
+            <div>ISBN #: {{ book.isbn }}</div>
+            <div>Author: {{ book.author}}</div>
+            <div>Edition: {{ book.edition}}</div>
+            <div>Owner: {{ book.owner}} </div>
+            <div>price: {{ book.price}}</div><br> 
+            <div> <a type="submit" href="/book/{{book.id}}/carts" class="btn btn-primary">Add to Cart</a>&nbsp;
+            <span class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Offer</span>
         <br><br>
  
   </div>
+</div>
+
+<div class="modal fade" id="offerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">What whould you like to offer for this book?</h4>
+        </div>
+        <div class="modal-body">
+          <textarea form="offerForm" name="offerMsg" style="width:100%;"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form style="display:inline-block;" id="offerForm" method="post" action="/book/offers/new">
+            <input type="submit" class="btn btn-primary" value="Sent Offer">
+          </form>
+        </div>
+      </div>
+    </div>
 </div>
