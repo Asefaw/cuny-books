@@ -6,7 +6,7 @@ const cartSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    book_id: {
+    book: {
         type: String,
         required: true
     },

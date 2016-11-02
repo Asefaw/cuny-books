@@ -3,5 +3,17 @@
         <div class="alert alert-success">
           <strong>{{status.title}}</strong> {{status.msg}}
         </div>
-    {{/if}}
+    {{/if}} 
+    
+    <div>
+        {{# each cart }}
+            <div>Buyer: {{this.buyer}}</div>
+            <div>Book: {{this.bookId}}</div>
+            <div>Quantity: {{this.quantity}}</div>
+            <div> Total Price: {{this.total}}</div>
+        {{/each}}
+    </div>
+    <div>
+        <a class="btn btn-success" href="#">Checkout</a>
+    </div>
 </div>
