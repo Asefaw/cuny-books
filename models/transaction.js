@@ -1,20 +1,24 @@
 const mongoose = require('mongoose');
 const db = require('../database/db'); // for db connection
 
-const transactionSchema = mongoose.Schema({
-	buyer: {
-		type: String
-	},
-	book_id: {
-		type: String
-	},
-	date: {
-		type: Number
-	},
-	quantity: {
-		type: Number
-	}
+const transSchema = mongoose.Schema( {
+   buyer: {
+       type: String,
+       required: true
+   },
+   book_id: {
+       type: String,
+       required: true
+   },
+   date: {
+       type: Date,
+       default: Date.now
+   },
+   amount: {
+       type: Number,
+       required: true
+   }
+   // we may need to save customer's credit card info
 });
 
-var transaction = module.exports = mongoose.model('Transaction', transactionSchema);
-
+module.exports = mongoose.model('Transaction', transSchema);

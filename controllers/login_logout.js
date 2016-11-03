@@ -8,7 +8,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
  //---user Authentication begins----
  
- router.get('/user/login', function(req, res, next) {  
+router.get('/user/login', function(req, res, next) {  
   res.render('login');
 });
 
@@ -25,7 +25,7 @@ router.post('/user/login',
    //---user Authentication ends----
   
   //----user Logout begins-----
-  router.get('/user/logout', function(req, res,next){
+router.get('/user/logout', function(req, res,next){
 	req.logout();
 	req.flash('success_msg', 'You have been logged Out');
 	res.redirect('login');

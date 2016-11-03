@@ -25,6 +25,7 @@ const books =   require('./controllers/books');
 const users =   require('./controllers/users');
 const offers = require('./controllers/offers');
 // const api =    require('./controllers/api');
+const carts =    require('./controllers/carts');
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
 
@@ -123,6 +124,9 @@ app.use('/book/search', books.search);
 app.use('/book/searchAll', books.searchAll);
 app.use('/api/offers', offers.index);
 app.use('/book/offers/new', offers.newOffer);
+
+//checkout
+app.use('/book/:id/carts', carts.index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
