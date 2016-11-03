@@ -23,30 +23,35 @@ module.exports = {
     },
     
   add(req, res) { 
-    //   Cart.findOne({'id':req.params.book_id}, function(err, result){
-    //       if(err){
-    //           console.log(err);
-    //       }else{
-    //           book_title = result.title;
-    //           price = result.price;
-    //       }
-    //   }); 
+      Cart.findOne({'bookId':req.body.id}, function(err, result){
+          if(result.length){
+              result.buyer = result.buyer || req.user.fullName;
+              result.bookId = result.bookId || req.body.id;
+              result.bookTitle = result.bookTitle || req.body.title;
+              result.quntity = 2; 
+              result.total = result.total + price;
+              result.save(function(err){
+                  loadShoppingCart(res);
+              });
+          }else{
+              var newCart = new Cart({
+              buyer: req.user.fullName,
+              bookId: req.body.id,
+              bookTitle: req.body.title,
+              quantity: 1, 
+              total: req.body.price
+          });
+          Cart.addBook(newCart, function(err, cart){
+              if(err){
+                  res.send(err);
+              }else{
+                  loadShoppingCart(res);
+              }
+          });
+          }
+       }); 
        
-       var newCart = new Cart({
-           buyer: req.user.fullName,
-           bookId: req.body.id,
-           bookTitle: req.body.title,
-           quantity: 1,
-           price:  req.body.price,
-           total: req.body.price
-       });
-       Cart.addBook(newCart, function(err, cart){
-           if(err){
-               res.send(err);
-           }else{
-               loadShoppingCart(res);
-           }
-       });
+        
   },
   remove(req, res){
       Cart.remove(function(err){
