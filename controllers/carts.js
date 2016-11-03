@@ -24,7 +24,10 @@ module.exports = {
     
   add(req, res) { 
       Cart.findOne({'bookId':req.body.id}, function(err, result){
-          if(result.length){
+          
+          if(result){
+              console.log(result);
+              //loadShoppingCart(res);
               result.buyer = result.buyer || req.user.fullName;
               result.bookId = result.bookId || req.body.id;
               result.bookTitle = result.bookTitle || req.body.title;
@@ -33,6 +36,8 @@ module.exports = {
               result.save(function(err){
                   loadShoppingCart(res);
               });
+              
+          
           }else{
               var newCart = new Cart({
               buyer: req.user.fullName,
@@ -49,7 +54,7 @@ module.exports = {
               }
           });
           }
-       }); 
+      }); 
        
         
   },

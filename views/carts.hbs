@@ -15,7 +15,14 @@
     <div>
         <b>Grand Total:</b>
     </div><br>
+    {{# if cart}}
     <div>
         <a class="btn btn-success" href="#">Checkout</a>
+    </div><br>
+    <div>
+        <a class="btn btn-danger" href="/cart/empty">Empty Cart</a>
     </div>
+    {{else}}
+        <p>Your Cart is Empty. Click <a href="/user/dashboard">Here</a> to shop</p>
+    {{/if}}
 </div>
