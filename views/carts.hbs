@@ -7,7 +7,7 @@
     
     <div>
         {{# each cart }} 
-            <div>Book: {{this.bookId}}</div>
+            <div>Book: <a href="/books/{{this.bookId}}"> {{this.bookTitle}}</a></div>
             <div>Quantity: {{this.quantity}}</div>
             <div> Total Price: {{this.total}}</div>
         {{/each}}

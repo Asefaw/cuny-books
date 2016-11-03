@@ -4,14 +4,14 @@ const User = require('../models/user');
 const Cart = require('../models/cart');
 
 function loadShoppingCart(res){
-	Cart.find(function(err, cart){ 
+    Cart.find(function(err, cart){ 
         if(err)
             res.render('carts', {'error_msg': 'Error loading your cart'});
         res.render('carts', {cart: cart});
-	});
+    });
 };
 
-var bookItem, owner, price; //holds book properties
+var book_title, owner, price; //holds book properties
 module.exports = {
     
     index(req, res){
@@ -27,7 +27,7 @@ module.exports = {
      Book.findById(req.params.book_id, function(err, doc){
          if(err)
             console.log(err);
-            bookItem = doc.title;
+            book_title = doc.title;
             owner = doc.owner;
             price = doc.price; 
      });
@@ -41,7 +41,8 @@ module.exports = {
         }else{
             Cart.addBook( new Cart({
                  buyer: owner,
-                 book: bookItem, 
+                 bookId: req.params.book_id,
+                 bookTitle: book_title, 
                  quantity: 1,
                  total: qty * price
          }), function(err, cart){
