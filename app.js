@@ -127,7 +127,8 @@ app.use('/book/searchAll', books.searchAll);
 //checkout
 app.use('/user/cart', carts.index);
 app.use('/cart/add', carts.add);
-app.use('/cart/empty', carts.remove);
+app.use('/cart/remove/:id', carts.remove);
+app.use('/cart/empty', carts.emptyCart);
 app.use('/books/:id', books.show);
 app.use('/api/offers', offers.index);
 app.use('/book/offers/new', offers.newOffer);

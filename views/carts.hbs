@@ -10,6 +10,7 @@
             <div>Book: <a href="/books/{{this.bookId}}"> {{this.bookTitle}}</a></div>
             <div>Quantity: {{this.quantity}}</div>
             <div> Total Price: {{this.total}}</div>
+            <a class="btn btn-danger" href="/cart/remove/{{this.id}}">Remove</a>
         {{/each}}
     </div><br>
     <div>
