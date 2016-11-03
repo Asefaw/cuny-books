@@ -11,7 +11,7 @@ function loadShoppingCart(res){
     });
 };
 
-var book_title, owner, price; //holds book properties
+var book_title, buyer, price; //holds book properties
 module.exports = {
     
     index(req, res){
@@ -23,35 +23,36 @@ module.exports = {
     },
     
   add(req, res) { 
-      //get book properies which is added to the sopping cart
-     Book.findById(req.params.book_id, function(err, doc){
-         if(err)
-            console.log(err);
-            book_title = doc.title;
-            owner = doc.owner;
-            price = doc.price; 
-     });
-     var qty = 1; 
-    
-    // if the book exist in the shopping cart increase quantity
-    Cart.findById(req.params.book_id, function(err, book){
-        if(book){
-            book.qunatity += 1;
-            book.save();
-        }else{
-            Cart.addBook( new Cart({
-                 buyer: owner,
-                 bookId: req.params.book_id,
-                 bookTitle: book_title, 
-                 quantity: 1,
-                 total: qty * price
-         }), function(err, cart){
-                if(err) throw err;
-                req.flash('success_msg', 'Book Added to your cart')
-                loadShoppingCart(res);
-            });
-             
-        }
-    }); 
-  }  
+    //   Cart.findOne({'id':req.params.book_id}, function(err, result){
+    //       if(err){
+    //           console.log(err);
+    //       }else{
+    //           book_title = result.title;
+    //           price = result.price;
+    //       }
+    //   }); 
+       
+       var newCart = new Cart({
+           buyer: req.user.fullName,
+           bookId: req.body.id,
+           bookTitle: req.body.title,
+           quantity: 1,
+           price:  req.body.price,
+           total: req.body.price
+       });
+       Cart.addBook(newCart, function(err, cart){
+           if(err){
+               res.send(err);
+           }else{
+               loadShoppingCart(res);
+           }
+       });
+  },
+  remove(req, res){
+      Cart.remove(function(err){
+          if(err) throw err
+         
+          loadShoppingCart(res);
+      })
+  }
 };

@@ -2,15 +2,19 @@
 <div class="container">
     <div align="center">
     </div>
-	<div class="jumbotron">   
-            <div>Title: {{ book.title }}</div>
-            <div>ISBN #: {{ book.isbn }}</div>
-            <div>Author: {{ book.author}}</div>
-            <div>Edition: {{ book.edition}}</div>
-            <div>Owner: {{ book.owner}} </div>
-            <div>price: {{ book.price}}</div><br> 
-            <div> <a type="submit" href="/book/{{book.id}}/carts" class="btn btn-primary">Add to Cart</a>&nbsp;
-            <span class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Offer</span>
+	<div class="jumbotron">    
+            <form method="POST" action="/cart/add">
+              Title: <input type="text" name="title" value="{{book.title}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              ISBN #: <input type="text" value="{{book.isbn}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              Author: <input type="text" value="{{book.author}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              Edition: <input type="text" value="{{book.edition}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              Owner: <input type="text" value="{{book.owner}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              Price: <input type="text" name="price" value="{{book.price}}" readOnly style="background-color:transparent;border:0px">
+                    <input type="hidden" name="id" value="{{book.id}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              <button type="submit" class="btn btn-primary">Add To Cart</button>&nbsp;
+              <span class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Make Offer</span>
+            </form><br><br> 
+             
         <br><br>
  
   </div>
