@@ -23,11 +23,13 @@ const MongoStore = require('connect-mongo')(session);
 const index =  require('./controllers/index');
 const books =   require('./controllers/books');
 const users =   require('./controllers/users');
- const carts =    require('./controllers/carts');
+const carts =    require('./controllers/carts');
 const offers = require('./controllers/offers');
 
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
+
+const contact = require('./controllers/contact');
 
 const app = express();
 
@@ -129,6 +131,8 @@ app.use('/book/:id/carts', carts.index);
 app.use('/api/offers', offers.index);
 app.use('/book/offers/new', offers.newOffer);
 
+//contact
+app.use('/contact', contact.registerRouter());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
