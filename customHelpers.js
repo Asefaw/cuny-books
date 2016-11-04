@@ -12,11 +12,10 @@ module.exports =
 			if(data.image) {
 				imgSrc = '<img src="' + data.image + '"/>';
 			}
-			str += '<div class="">' + imgSrc + '</div>';
-			str += '<div>Title: ' + data[i].title + ' edition ' + data[i].edition + ' by ' + data[i].author + '</div>';
+			str += '<div class=""><a href="/books/'+data[i]._id+'">' + imgSrc + '</a></div>';
+			str += '<div><a href="/books/'+data[i]._id+'">Title</a>: ' + data[i].title + ' edition ' + data[i].edition + ' by ' + data[i].author + '</div>';
 			str += '<div>Price: ' + data[i].price + '</div>';
-			str += '<div class="btn btn-primary"><a href="/book/:' + data[i]._id + '/carts">Add to cart</a></div>';
-			// <div><a href="/book/:{{this.id}}/carts" class="btn btn-primary btn-block"> Add to Cart</a></div>
+			str += '<a class="btn btn-primary" href="/books/'+data[i]._id+'">View Details</a> &nbsp;';
 			str += '<div class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Offer'
 			str += '<div style="display:none;">'+ data[i]._id +'</div>'
 			str += '</div>'
@@ -44,6 +43,25 @@ module.exports =
 			str += '<div class="col-sm-3 listing-offer btn btn-primary">';
 			str += '<span style="color:' + color + '">' + data[i].offerCount + ' Offers</span>';
 			str += '</div>';
+		}
+		str += '</div>';
+
+		return new hbs.SafeString(str);
+	},
+	offerBooks: function(data) {
+		var data = JSON.parse(JSON.stringify(data));
+		              //   <div class='my-listing'>
+                //     <div class='col-sm-9 listing-title btn btn-info'>{{this.title}}</div>
+                //     <div class='col-sm-3 listing-offer btn btn-primary'><span style='color: lightgreen;'>{{this.offerCount}}</span> Offers</div>
+                // </div>
+		var str = '<ul class="list-group">';
+		if(data.length == 0) {
+			str += "<h4>You currently have no book to offer. You can only offer books that is listed</h4>";
+		}
+		for(var i = 0; i < data.length; i++) {
+			str += '<li class="list-group-item">' + '<p>' + data[i].title + '</p>';
+			str += '<div style="display:none;">'+ data[i]._id +'</div>';
+			str +='</li>';
 		}
 		str += '</div>';
 

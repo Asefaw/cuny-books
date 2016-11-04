@@ -1,0 +1,43 @@
+
+<div class="container">
+    <div align="center">
+    </div>
+	<div class="jumbotron">    
+            <form method="POST" action="/cart/add">
+              Title: <input type="text" name="title" value="{{book.title}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              ISBN #: <input type="text" value="{{book.isbn}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              Author: <input type="text" value="{{book.author}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              Edition: <input type="text" value="{{book.edition}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              Owner: <input type="text" value="{{book.owner}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              Price: <input type="text" name="price" value="{{book.price}}" readOnly style="background-color:transparent;border:0px">
+                    <input type="hidden" name="id" value="{{book.id}}" readOnly style="background-color:transparent;border:0px"><br><br>
+              <button type="submit" class="btn btn-primary">Add To Cart</button>&nbsp;
+              <span class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Make Offer</span>
+            </form><br><br> 
+             
+        <br><br>
+ 
+  </div>
+</div>
+
+<div class="modal fade" id="offerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">What whould you like to offer for this book?</h4>
+        </div>
+        <div class="modal-body">
+          <textarea form="offerForm" name="offerMsg" style="width:100%;"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form style="display:inline-block;" id="offerForm" method="post" action="/book/offers/new">
+            <input type="submit" class="btn btn-primary" value="Sent Offer">
+          </form>
+        </div>
+      </div>
+    </div>
+</div>

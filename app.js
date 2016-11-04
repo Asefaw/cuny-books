@@ -23,9 +23,9 @@ const MongoStore = require('connect-mongo')(session);
 const index =  require('./controllers/index');
 const books =   require('./controllers/books');
 const users =   require('./controllers/users');
-const offers = require('./controllers/offers');
-// const api =    require('./controllers/api');
 const carts =    require('./controllers/carts');
+const offers = require('./controllers/offers');
+
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
 
@@ -109,7 +109,7 @@ app.use(dashboard);
 //api routes
 app.use('/api/books', books.index); 
 app.use('/books/newBookForm', books.newbook);
-app.use('/book/new', books.create);
+app.use('/books/new', books.create);
 app.use('/book/:user/books', books.myBooks);
 // app.use('/books/:id', books.show);
 app.use('/books/:id/delete', books.remove);
@@ -117,16 +117,19 @@ app.use('/books/:id/update', books.update);
 app.use('/api/users', users.showAll);
 app.use('/users/:id', users.show);
 app.use('/user/signup', users.index);
-app.use('/users/new', users.create);
+app.use('/user/new', users.create);
 app.use('/users/:email/delete', users.delete);
 app.use('/users/update:email', users.update);
 app.use('/book/search', books.search);
 app.use('/book/searchAll', books.searchAll);
-app.use('/api/offers', offers.index);
-app.use('/book/offers/new', offers.newOffer);
 
 //checkout
-app.use('/book/:id/carts', carts.index);
+app.use('/user/cart', carts.index);
+app.use('/cart/add', carts.add);
+app.use('/cart/empty', carts.remove);
+app.use('/books/:id', books.show);
+app.use('/api/offers', offers.index);
+app.use('/book/offers/new', offers.newOffer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
