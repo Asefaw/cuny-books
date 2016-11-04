@@ -36,7 +36,6 @@ module.exports = {
               result.save(function(err){
                   loadShoppingCart(res);
               });
-              
           
           }else{
               var newCart = new Cart({
@@ -59,10 +58,17 @@ module.exports = {
         
   },
   remove(req, res){
-      Cart.remove(function(err){
-          if(err) throw err
-         
-          loadShoppingCart(res);
-      })
+    Cart.findByIdAndRemove(req.params.id,function(err){
+      if(err) throw err
+     
+      loadShoppingCart(res);
+    });
+  },
+  emptyCart(req, res){
+    Cart.remove(function(err){
+      if(err) throw err
+     
+      loadShoppingCart(res);
+    });  
   }
 };
