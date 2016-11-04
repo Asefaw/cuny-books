@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const sendGrid = require('sendgrid')('SENDGRID_APIKEY');
+
 module.exports = {
     index(req, res){
         if(!req.user){
@@ -43,12 +43,7 @@ module.exports = {
 					 	if(err){
 					 		throw err;
 					 	}else{
-                            var Email = new sendGrid.Email(); 
-                                Email.addto(email),
-                                Email.sentFrom('noreply@cunybooks.com'),
-                                Email.setSubject('Confirmation Account has been Created!'),
-                                Email.setHtml('Hello Your Account has been suuccessfully Created!)'
-                            sendGrid.sen(Email);
+					 		console.log(user);
 					 		res.render('login',{status: {title: 'Account Created', msg: 'Login in using the email and password you just created.'}}); 
 					 	}
 					});
