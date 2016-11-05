@@ -25,18 +25,15 @@ module.exports = {
   add(req, res) { 
       Cart.findOne({'bookId':req.body.id}, function(err, result){
           
-          if(result){
-              console.log(result);
-              //loadShoppingCart(res);
+          if(result){ 
               result.buyer = result.buyer || req.user.fullName;
               result.bookId = result.bookId || req.body.id;
               result.bookTitle = result.bookTitle || req.body.title;
-              result.quntity = 2; 
-              result.total = result.total + price;
-              result.save(function(err){
+              result.quantity++; 
+              result.total = result.total + parseInt(req.body.price);
+              result.save(function(err){ 
                   loadShoppingCart(res);
-              });
-          
+              });          
           }else{
               var newCart = new Cart({
               buyer: req.user.fullName,

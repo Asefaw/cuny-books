@@ -73,6 +73,11 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req, res, next){
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+})
 // Express Validator for validating user form
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
