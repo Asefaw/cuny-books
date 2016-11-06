@@ -30,7 +30,7 @@ const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
 
 const contact = require('./controllers/contact');
-
+const checkout = require('./controllers/checkout');
 const app = express();
 
 // Set local variable title, Tips: local variables can be used in the view template
@@ -139,7 +139,7 @@ app.use('/cart/empty', carts.emptyCart);
 app.use('/books/:id', books.show);
 app.use('/api/offers', offers.index);
 app.use('/book/offers/new', offers.newOffer);
-
+app.use('/cart/checkout', checkout.index);
 //contact
 app.use('/contact', contact.registerRouter());
 

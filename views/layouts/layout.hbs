@@ -37,7 +37,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {{#if user}}
-        <li><a href='/user/cart' class="fa fa-shopping-cart" aria-hidden="true"> Cart</a></li>
+        <li>
+        <a href='/user/cart' class="fa fa-shopping-cart" aria-hidden="true"> Cart 
+        <span class="label label-info">{{session.totalBooks}}</span> 
+        </a>
+        </li>
         <li><a href='/user/dashboard'>Dashboard</a></li>
         <li><a href="/user/dashboard">Hello, {{user.fullName}}</a></li>
         <li><a href="/user/logout">Logout</a></li>
