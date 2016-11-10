@@ -140,6 +140,7 @@ app.use('/books/:id', books.show);
 app.use('/api/offers', offers.index);
 app.use('/book/offers/new', offers.newOffer);
 app.use('/cart/checkout', checkout.index);
+app.use('/cart/processCheckout', checkout.processCheckout);
 //contact
 app.use('/contact', contact.registerRouter());
 

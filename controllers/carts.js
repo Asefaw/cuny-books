@@ -15,6 +15,7 @@ function loadShoppingCart(req, res){
           totalBooks++;
         }
         req.session.totalBooks = totalBooks;
+        req.session.totalAmount = grandTotal;
         res.render('carts', {cart: cart, total: grandTotal, totalBooks: totalBooks});
     });
 };
