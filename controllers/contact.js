@@ -26,6 +26,7 @@ module.exports = {
 
 
 		var mailOptions = {
+			from: req.body.email;
 			to: 'cunybooks3@gmail.com',
 			subject: req.body.subject,
 			text: 'Name: ' + req.body.name + '\nEmail: ' + req.body.email + '\n\n' + req.body.message

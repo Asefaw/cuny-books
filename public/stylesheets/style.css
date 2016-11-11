@@ -70,6 +70,7 @@
   width: 100%;
   margin-top: 15px;
 }
+<<<<<<< HEAD
 
 
 
@@ -98,4 +99,8 @@
 
 #contact-button {
   width: 100px;
+=======
+.formhorizontal{
+  display: none;
+>>>>>>> 65359a73f319df56dc369585cdc6c945346cc943
 }
