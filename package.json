@@ -33,6 +33,7 @@
     "passport-local": "*",
     "passport-local-mongoose": "^4.0.0",
     "passport-mongoose": "0.0.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "xoauth2": "^1.2.0"
   }
 }
