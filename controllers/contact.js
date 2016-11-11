@@ -20,10 +20,9 @@ module.exports = {
 	
 		xoauth2gen = xoauth2.createXOAuth2Generator({  //to initialize Token Generator
    			 user: 'cunybooks3@gmail.com',
-   			 clientId: '154181963287-1fep26r070epelqponeo5catvps88jkk.apps.googleusercontent.com',
-   			 clientSecret: '1JSGkKcsleFIiMZ1yI1g4NTO',
-   			 refreshToken: '1/nxXmU-zt4wSSGAVMLr1-kWVx2f45lE-pNZGt6_5jdi0',
-   			 accessToken: 'ya29.Ci-SAwR7xKj26QheQLj0tz3MKu_4RxPLMYfGqPm4UylnqqSOpeKdgBOfQAPxeyqHWg'
+   			 clientId: '',
+   			 clientSecret: '',
+   			 refreshToken: ''
 		});
 
 		// Get HTTP accessToken if a cached token is expired
@@ -32,7 +31,6 @@ module.exports = {
         		return console.log(err);
    		    } else {
    		    	xoauth2gen.accessToken = accessToken;
-   		    	console.log("Authorization: Bearer " + accessToken);
    		    }
  		});
 
