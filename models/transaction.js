@@ -7,8 +7,8 @@ const transactionSchema = mongoose.Schema({
        type: String,
        required: true
    },
-   book_id: {
-       type: String,
+   book: {
+       type: Array,
        required: true
    },
    date: {

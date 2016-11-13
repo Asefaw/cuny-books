@@ -16,7 +16,7 @@ const offerSchema = mongoose.Schema({
 	}
 });
 
-var Offer = module.exports = mongoose.model('Transaction', offerSchema);
+var Offer = module.exports = mongoose.model('Offer', offerSchema);
 
 module.exports.saveNewOffer = function(newOffer, callback){
 	newOffer.save(callback);
