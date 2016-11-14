@@ -22,7 +22,6 @@ module.exports =
 			str += '</div>';
 		}
 		str += '</div>';
-		str += '<script src="/javascripts/offers.js"></script>'
 		
 		return new hbs.SafeString(str);
 	},
@@ -41,7 +40,9 @@ module.exports =
 				color = 'red';
 			}
 			str += '<div class="col-sm-3 listing-offer btn btn-primary">';
-			str += '<span style="color:' + color + '">' + data[i].offerCount + ' Offers</span>';
+			str += '<span class="showOfferBtn" data-toggle="modal" data-target="#showOfferModal" style="color:' + color + '">' + data[i].offerCount + ' Offers';
+			str += '<span style="display:none">' + data[i]._id + '</span>';
+			str += '</span>';
 			str += '</div>';
 		}
 		str += '</div>';

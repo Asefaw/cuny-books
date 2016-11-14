@@ -5,18 +5,29 @@ const router = express.Router();
 
 module.exports = {
 	index(req, res){
-        Offer.find()
-        .then(function(err, book){
-            if(err){
-                res.status(500).json(err);
-            }else{
-                res.status(200).json(book);
-            }
-        });
+
+        var book_id = req.query.book_id;
+
+        if(book_id) {
+            Offer.getOffersByBookId(book_id, function(err, offers) {
+                res.json(offers);
+            });
+        } else {
+            Offer.find()
+            .then(function(err, book){
+                if(err){
+                    res.status(500).json(err);
+                }else{
+                    res.status(200).json(book);
+                }
+            });
+        }
+
     },
     newOffer(req, res){
         var offerMsg = req.body.offerMsg;
         var book_id = req.body.book_id;
+        var offerBook = req.body.offerBook;
         var date = new Date();
         var time = date.getTime();
 

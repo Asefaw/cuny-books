@@ -44,20 +44,21 @@ router.get('/user/dashboard', function(req, res){
 				Book.getRelBooks(user.major, function(relBooks) {
 					user.relBooks = relBooks;
 					// console.log(relBooks);
-					showDashboard(user, res,req);
+					res.render('dashboard', user);
+					// showDashboard(user, res,req);
 				});
 			});
 		});
 	});
 });
 
-function showDashboard(user,res, req) {
-	if(req.user){
-		res.render('dashboard', user);
-	}else{
-		res.render('login');
-	} 
+// function showDashboard(user,res, req) {
+// 	if(req.user){
+		
+// 	}else{
+// 		res.render('login');
+// 	} 
 	 
-}
+// }
 
 module.exports = router;

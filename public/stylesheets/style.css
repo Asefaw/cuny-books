@@ -70,6 +70,34 @@
   width: 100%;
   margin-top: 15px;
 }
+
 .formhorizontal{
   display: none;
+}
+
+/****** Contact page *****/
+.img-responsive {
+  max-height: 150px;
+  width: 550px;
+  margin-top: 10px;
+  padding-top: 5px;
+  margin-left: 10px;
+}
+
+.contact-form-top {
+  overflow: hidden;
+  padding: 5px 25px 0px 25px;
+  text-align: left;
+}
+
+.contact-form {
+  margin-left: 10px;
+}
+
+.required {
+  color: red;
+}
+
+#contact-button {
+  width: 100px;
 }
