@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const db = require('../database/db'); // for db connection
-
   
 const transactionSchema = mongoose.Schema({
 	buyer: {
@@ -23,4 +22,3 @@ const transactionSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Transaction', transactionSchema);
-

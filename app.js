@@ -124,7 +124,6 @@ app.use('/books/:id/update', books.update);
 app.use('/api/users', users.showAll);
 app.use('/users/:id', users.show);
 app.use('/user/signup', users.index);
-
 app.use('/user/new', users.create);
 app.use('/users/:email/delete', users.delete);
 app.use('/users/update:email', users.update);

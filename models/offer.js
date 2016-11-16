@@ -27,4 +27,8 @@ module.exports.getOffers = function(book_id, callback) {
 	};
 	return Offer.find(query).then(callback);
 }
+module.exports.getOffersByBookId = function(book_id, callback){
+	var query = {book_id: book_id};
+	return Offer.find(query,callback);
+}
 

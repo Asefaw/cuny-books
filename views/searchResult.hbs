@@ -1,4 +1,4 @@
-
+ 
 <div class="container">
   <b>Search Results: </b>
   <div><br>
@@ -17,4 +17,13 @@
         <span class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Make Offer</span> 
         {{/each}}
   </div>
+ <br><br>
+<div><a href="/user/dashboard"><span class='glyphicon glyphicon-arrow-left'></span>Back</a></div>
+<div>
+{{#if status}}
+    <div class="alert alert-success">
+      <strong>{{status.title}}</strong> {{status.msg}}
+    </div>
+{{/if}}
+ 
 </div>

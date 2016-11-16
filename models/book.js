@@ -52,6 +52,10 @@ module.exports.saveNewBook = function(newBook, callback){
 	newBook.save(callback);
 }
 
+module.exports.findBookById = function(id, callback) {
+	var query = {_id: id};
+	Book.findOne(query, callback);
+}
 module.exports.findBooksByISBN = function(isbn, callback){
 	var query = {isbn: isbn};
 	Book.findOne(query,callback);
@@ -81,3 +85,4 @@ module.exports.getRelBooks = function(major, callback) {
 	var query = {major: major};
 	return Book.find(query).then(callback);
 }
+
