@@ -11,14 +11,6 @@
     margin-bottom: 1em;
 }
 
-.footer {
-  position: relative;
-
-  height: 150px;
-  clear:both;
-  padding-top:20px;
-}
-
 .min-search-bar {
   text-align: center;
 }
@@ -69,12 +61,164 @@
 .listbook-btn {
   width: 100%;
   margin-top: 15px;
-}
-<<<<<<< HEAD
+ 
+} 
+ 
+.formhorizontal{
+  display: none;
+}  
 
+
+/****** header *****/
+.navbar {
+    margin-bottom: 0px !important;
+    letter-spacing: 1px;
+    border-radius: 0;
+}
+
+.ul.nav navbar-nav {
+  padding-bottom: 10px;
+}
+.navbar li a, .navbar .navbar-brand {
+    font-weight: bold;
+    color: #5b5b5b !important;
+}
+ 
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #fff !important;
+    background-color: #333435 !important;
+}
+
+/****** footer *****/
+.navbar-fixed-bottom {
+  padding-top: 15px;
+}
+
+/****** Index *****/
+/* background setup */
+.background {
+    background-repeat:no-repeat;
+    background-position: 60% 20%;
+    background-image:url('/images/books.jpg');
+}
+
+/* fullscreen setup */
+html, body {
+   /*give this to all tags from html to .fullscreen */
+  height:100%;
+}
+
+.fullscreen {
+  width: 100%;
+  height: 90%;
+}
+
+
+#searchbar {
+  padding-top: 110px;
+}
+
+#searchbar h1 {
+  font-size: 78px;
+  letter-spacing: 1px;
+  font-weight: 900;
+  color: #333435;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#searchbar > div > div > form > div > input:focus {
+  border-color: red;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+
+/****** About *****/
+.banner {
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  background-image: linear-gradient(to bottom,#09f,#246dff);
+}
+
+.banner-title {
+  text-align: center;
+  padding: 100px 0 120px
+}
+
+.about h1 {
+  font-size: 54px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  margin: 0 0 30px;
+}
+
+.banner-description {
+  max-width: 1000px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .2px;
+  margin: 0 auto;
+}
+
+.team {
+  height: 600px;
+}
+
+.developers {
+  text-align: center;
+  padding: 65px 0px 10px;
+}
+
+.developers h1 {
+  padding-top: 5px;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-size: 40px;
+}
+
+.carousel {
+  padding: 70px 0px 100px;
+}
+
+.carousel-inner {
+  margin-bottom: 60px;
+}
+
+.carousel-indicators.active {
+  color: black !important;
+  border: 1px solid gray !important;
+}
+
+.carousel-indicators li {
+  background-color:  #1d74ff !important;
+  border: 1.5px solid #1d74ff !important;
+}
+
+.member-intro {
+  text-align: justify;
+  max-width: 500px;
+  padding-top: 12px;
+  line-height: 1.75;
+}
+
+.carousel-control.left,.carousel-control.right {
+  color: #1b67ff;
+  padding-top: 115px;
+  font-size: 40px;
+  background-image:none !important;
+
+}
+
+.carousel-control.right:hover, .carousel-control.left:hover {
+  color: #1d74ff;
+}
 
 
 /****** Contact page *****/
+
 .img-responsive {
   margin-top: 10px;
   padding-top: 5px;
@@ -96,13 +240,9 @@
 }
 
 #contact-button {
-  width: 100px;
+  width: 100px; 
+}
 
-/****** Contact page *****/
-
-
-=======
-.formhorizontal{
-  display: none;
->>>>>>> 65359a73f319df56dc369585cdc6c945346cc943
+.form-group.clearfix {
+  padding-bottom: 40px;
 }

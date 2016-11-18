@@ -1,9 +1,29 @@
-Search Results:
+ 
+<div class="container">
+  <b>Search Results: </b>
+  <div><br>
+  {{#if status}}
+      <div class="alert alert-success">
+        <strong>{{status.title}}</strong> {{status.msg}}
+      </div>
+  {{/if}}
+  {{# each results}}
+  			<div><a href="/books/{{this.id}}">
+  			  <img src="http://vignette3.wikia.nocookie.net/galaxylife/images/7/7c/Noimage.png/revision/latest?cb=20120622041841" alt="" /</div>
+          </a>
+        <div>Title: {{this.title}}</div><br> 
+        <div>Price: {{this.price}}</div><br><br>
+        <a href="/books/{{this.id}}" class="btn btn-primary">View Details</a>&nbsp;
+        <span class="btn btn-success offerBtn" data-toggle="modal" data-target="#offerModal">Make Offer</span> 
+        {{/each}}
+  </div>
+ <br><br>
+<div><a href="/user/dashboard"><span class='glyphicon glyphicon-arrow-left'></span>Back</a></div>
 <div>
 {{#if status}}
     <div class="alert alert-success">
       <strong>{{status.title}}</strong> {{status.msg}}
     </div>
 {{/if}}
-{{showBooks results}}
+ 
 </div>

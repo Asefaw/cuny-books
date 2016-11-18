@@ -29,8 +29,9 @@ const offers = require('./controllers/offers');
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
 
+const about = require('./controllers/about');
 const contact = require('./controllers/contact');
-
+const checkout = require('./controllers/checkout');
 const app = express();
 
 // Set local variable title, Tips: local variables can be used in the view template
@@ -73,6 +74,11 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req, res, next){
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+})
 // Express Validator for validating user form
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
@@ -119,7 +125,6 @@ app.use('/books/:id/update', books.update);
 app.use('/api/users', users.showAll);
 app.use('/users/:id', users.show);
 app.use('/user/signup', users.index);
-
 app.use('/user/new', users.create);
 app.use('/users/:email/delete', users.delete);
 app.use('/users/update:email', users.update);
@@ -134,6 +139,11 @@ app.use('/cart/empty', carts.emptyCart);
 app.use('/books/:id', books.show);
 app.use('/api/offers', offers.index);
 app.use('/book/offers/new', offers.newOffer);
+app.use('/cart/checkout', checkout.index);
+app.use('/cart/processCheckout', checkout.processCheckout);
+
+//about
+app.use(about);
 
 //contact
 app.use('/contact', contact.registerRouter());

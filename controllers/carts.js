@@ -3,11 +3,20 @@ const Book = require('../models/book');
 const User = require('../models/user');
 const Cart = require('../models/cart');
 
-function loadShoppingCart(res){
+function loadShoppingCart(req, res){
     Cart.find(function(err, cart){ 
         if(err)
             res.render('carts', {'error_msg': 'Error loading your cart'});
-        res.render('carts', {cart: cart});
+
+        var grandTotal = 0;
+        var totalBooks = 0;
+        for(var i=0; i< cart.length; i++){ 
+          grandTotal += cart[i].total;
+          totalBooks++;
+        }
+        req.session.totalBooks = totalBooks;
+        req.session.totalAmount = grandTotal;
+        res.render('carts', {cart: cart, total: grandTotal, totalBooks: totalBooks});
     });
 };
 
@@ -16,7 +25,7 @@ module.exports = {
     
     index(req, res){
         if(req.user){
-            loadShoppingCart(res);
+            loadShoppingCart(req,res);
         }else{
             res.redirect('user/login');
         }
@@ -25,16 +34,14 @@ module.exports = {
   add(req, res) { 
       Cart.findOne({'bookId':req.body.id}, function(err, result){
           
-          if(result){
-              console.log(result);
-              //loadShoppingCart(res);
+          if(result){ 
               result.buyer = result.buyer || req.user.fullName;
               result.bookId = result.bookId || req.body.id;
               result.bookTitle = result.bookTitle || req.body.title;
-              result.quntity = 2; 
-              result.total = result.total + price;
-              result.save(function(err){
-                  loadShoppingCart(res);
+              result.quantity++; 
+              result.total = result.total + parseInt(req.body.price);
+              result.save(function(err){ 
+                  loadShoppingCart(req,res);
               });
           
           }else{
@@ -49,7 +56,7 @@ module.exports = {
               if(err){
                   res.send(err);
               }else{
-                  loadShoppingCart(res);
+                  loadShoppingCart(req,res);
               }
           });
           }
@@ -61,14 +68,14 @@ module.exports = {
     Cart.findByIdAndRemove(req.params.id,function(err){
       if(err) throw err
      
-      loadShoppingCart(res);
+      loadShoppingCart(req,res);
     });
   },
   emptyCart(req, res){
     Cart.remove(function(err){
       if(err) throw err
      
-      loadShoppingCart(res);
+      loadShoppingCart(req,res);
     });  
   }
 };

@@ -15,6 +15,7 @@ module.exports = {
 		var password = req.body.password; 
 		var college = req.body.college;
 	    var major = req.body.major;
+        
 		// Validation
 		req.checkBody('fullName', 'Full Name is required').notEmpty();
 		req.checkBody('email', 'Email is required').notEmpty();

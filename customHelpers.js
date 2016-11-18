@@ -22,7 +22,7 @@ module.exports =
 			str += '</div>';
 		}
 		str += '</div>';
-
+		
 		return new hbs.SafeString(str);
 	},
 	showListings: function(data) {
@@ -40,8 +40,29 @@ module.exports =
 				color = 'red';
 			}
 			str += '<div class="col-sm-3 listing-offer btn btn-primary">';
-			str += '<span style="color:' + color + '">' + data[i].offerCount + ' Offers</span>';
+			str += '<span class="showOfferBtn" data-toggle="modal" data-target="#showOfferModal" style="color:' + color + '">' + data[i].offerCount + ' Offers';
+			str += '<span style="display:none">' + data[i]._id + '</span>';
+			str += '</span>';
 			str += '</div>';
+		}
+		str += '</div>';
+
+		return new hbs.SafeString(str);
+	},
+	offerBooks: function(data) {
+		var data = JSON.parse(JSON.stringify(data));
+		              //   <div class='my-listing'>
+                //     <div class='col-sm-9 listing-title btn btn-info'>{{this.title}}</div>
+                //     <div class='col-sm-3 listing-offer btn btn-primary'><span style='color: lightgreen;'>{{this.offerCount}}</span> Offers</div>
+                // </div>
+		var str = '<ul class="list-group">';
+		if(data.length == 0) {
+			str += "<h4>You currently have no book to offer. You can only offer books that is listed</h4>";
+		}
+		for(var i = 0; i < data.length; i++) {
+			str += '<li class="list-group-item">' + '<p>' + data[i].title + '</p>';
+			str += '<div style="display:none;">'+ data[i]._id +'</div>';
+			str +='</li>';
 		}
 		str += '</div>';
 

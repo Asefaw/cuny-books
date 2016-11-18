@@ -16,7 +16,7 @@ const offerSchema = mongoose.Schema({
 	}
 });
 
-var Offer = module.exports = mongoose.model('Transaction', offerSchema);
+var Offer = module.exports = mongoose.model('Offer', offerSchema);
 
 module.exports.saveNewOffer = function(newOffer, callback){
 	newOffer.save(callback);
@@ -26,5 +26,9 @@ module.exports.getOffers = function(book_id, callback) {
 		book_id: { $in: book_id}
 	};
 	return Offer.find(query).then(callback);
+}
+module.exports.getOffersByBookId = function(book_id, callback){
+	var query = {book_id: book_id};
+	return Offer.find(query,callback);
 }
 

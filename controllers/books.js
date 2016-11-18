@@ -130,14 +130,13 @@ module.exports = {
 
     },
     searchAll(req, res) {
-      console.log(req.body.title);
-        Book.find(
-            {$text : { $search : req.body.title}}
-        ).select('-_id').exec(function(err, results) {
-            console.log(err);
+      var input = req.body.title; 
+        Book.find({ $or:[ {'isbn':input}, {'title':input}]},function(err, results) {
+           // console.log(err);
             if(results.length){
                 var data = JSON.parse(JSON.stringify(results));
-                res.render('searchResult', {results: data});
+                console.log(results.title);
+                res.render('searchResult', {results: results});
             }else if(req.user){
                 req.flash('error_msg', 'No Book found');
                 res.redirect('/user/dashboard');

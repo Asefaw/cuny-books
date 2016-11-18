@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 const db = require('../database/db'); // for db connection
-
   
 const transactionSchema = mongoose.Schema({
 	buyer: {
        type: String,
        required: true
    },
-   book_id: {
-       type: String,
+   book: {
+       type: Array,
        required: true
    },
    date: {
@@ -23,4 +22,3 @@ const transactionSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Transaction', transactionSchema);
-

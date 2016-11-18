@@ -1,26 +1,34 @@
-<div class="container">
+<div class="fullscreen background">
 
-    <div class="alert alert-success">
+	<div class="alert alert-success">
         {{#if user}}
             <p>The current user login is: {{user.fullName}}</p>
         {{else}}
             <p>You are not login yet. </p>
         {{/if}}
     </div>
-    
-	<div class="jumbotron">
-        <h1 class="display-3">Welcome to Cuny Books</h1>
-        <p class="lead">Cuny books is a place where all cuny studenst can find affordable textbooks from their fellow students. students can buy or exhchage text books from other studensts in thier campus or other cuny colleges.</p>
-        <div>
-        {{#if status}}
-            <div class="alert alert-success">
-              <strong>{{status.title}}</strong> {{status.msg}}
-            </div>
-        {{/if}}
-        <form class="form-horizontal" role="form" action="/book/searchAll" method="POST"> 
-                <input type="text" name="title" placeholder="Title Or ISBN" class="form-control"><br>
-                <button type="submit" class="btn btn-primary btn-block">Search</button>
-            </form> <!-- /form -->
-        </div>
-  </div>
+
+	<div id="searchbar" class="container">
+		<h1>Find textbooks</h1>
+		<div class="row">
+		  <div class="col-md-8 col-md-offset-2">
+	  		<form action="/book/searchAll" method="POST"> 
+	  			<div class="input-group input-group-lg">
+	  				<span class="input-group-btn">
+	  					<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+	        		</span>
+	  				<input class="form-control form-control-lg" type="text" name="title" placeholder="Enter Title Or ISBN..."> 
+	  				<span class="input-group-btn">
+	  					<button type="submit" class="btn btn-danger btn-block">Search</button>
+	        		</span>
+	  			</div>
+	  		</form>
+	  	  </div>
+	  	</div>
+    </div>    
 </div>
+
+
+
+
+                
