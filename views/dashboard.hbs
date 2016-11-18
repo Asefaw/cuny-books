@@ -65,11 +65,13 @@
           <h4 class="modal-title" id="myModalLabel">What whould you like to offer for this book?</h4>
         </div>
         <div class="modal-body">
+          <label for="offerBook">Avaliable Books:</label>
           <select class="form-control" form="offerForm" id="offerBook">
             {{#each listings}}
               <option value="{{this._id}}">{{this.title}}</option>
             {{/each}}
-          </select> 
+          </select>
+          <label for="offer">Message: </label>
           <textarea id="offer" form="offerForm" name="offerMsg" style="width:100%;"></textarea>
         </div>
         <div class="modal-footer">
