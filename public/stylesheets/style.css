@@ -42,11 +42,9 @@
   background-color: white;
   border: 1px solid black;
 }
-
 .content-block {
   min-height: 200px;
 }
-
 .info-block {
   padding: 20px 0px;
   min-height: 20px;
@@ -65,19 +63,14 @@
   background-color: transparent;
   color: black;
 }
-
 .listbook-btn {
   width: 100%;
   margin-top: 15px;
  
-} 
- 
+}  
 .formhorizontal{
   display: none;
 }  
-
-
- 
 
 /****** Contact page *****/
 .img-responsive {
@@ -85,17 +78,14 @@
   padding-top: 5px;
   margin-left: 10px;
 }
-
 .contact-form-top {
   overflow: hidden;
   padding: 0px 25px 0px 25px;
   text-align: left;
 }
-
 .contact-form {
   margin-left: 10px;
 }
-
 .required {
   color: red;
 }
@@ -104,10 +94,5 @@
  
   width: 100px; 
  
-  width: 100px;
- 
-
-/****** Contact page *****/
- 
- 
+  width: 100px;  
 }

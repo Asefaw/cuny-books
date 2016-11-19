@@ -8,14 +8,12 @@ module.exports =  {
 			res.render('checkout');
 		}else{
 			res.render('login');
-		}
-		 
+		}		 
 	},
 	processCheckout(req, res){
 		if(!req.user){
 			return res.redirect('/user/login');
-		}
-		
+		}		
 		stripe.charges.create({
 		  amount: req.session.totalAmount,
 		  currency: "usd",
@@ -26,13 +24,11 @@ module.exports =  {
 		  	req.flash('error_msg', err.message);
 		  	res.redirect('checkout');
 		  }
-
 		  Cart.find(function(err, cart){
 		  	if(err){
 		  		res.send(err);
 		  	}else{
 		  		var transaction = new Transaction();
-
 		  		var grandTotal = 0; 
 		  		for(var i=0; i< cart.length; i++){ 
 		  			transaction.book.push(cart[i].bookId);		  			
@@ -52,8 +48,7 @@ module.exports =  {
 	  				req.flash('success_msg', 'Order Placed!')
 	      			res.redirect('/user/cart');
 	      			}
-	  			});
-		 		 
+	  			});		 		 
 		  	}
 		  });		    
 		});
