@@ -29,6 +29,7 @@ const offers = require('./controllers/offers');
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
 
+const about = require('./controllers/about');
 const contact = require('./controllers/contact');
 const checkout = require('./controllers/checkout');
 const app = express();
@@ -140,6 +141,11 @@ app.use('/api/offers', offers.index);
 app.use('/book/offers/new', offers.newOffer);
 app.use('/cart/checkout', checkout.index);
 app.use('/cart/processCheckout', checkout.processCheckout);
+ 
+
+//about
+app.use(about);
+ 
 //contact
 app.use('/contact', contact.registerRouter());
 
