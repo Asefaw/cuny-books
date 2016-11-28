@@ -1,0 +1,20 @@
+<div class="container">
+    {{#if status}}
+        <div class="alert alert-success">
+          <strong>{{status.title}}</strong> {{status.msg}}
+        </div>
+    {{/if}} 
+    
+    <div>
+        {{# each orders }} 
+            <div>Book: <a href="/books/{{this.book}}"> {{this.book}}</a></div><br>
+            <div>Date: {{this.date}}</div><br>
+            <div>Amount: $ {{this.amount}}</div> <br><br>
+        {{/each}}
+    </div>
+    <div>
+         
+    </div> 
+     
+     
+</div>

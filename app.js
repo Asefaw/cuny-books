@@ -25,13 +25,12 @@ const books =   require('./controllers/books');
 const users =   require('./controllers/users');
 const carts =    require('./controllers/carts');
 const offers = require('./controllers/offers');
-
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
-
 const about = require('./controllers/about');
 const contact = require('./controllers/contact');
 const checkout = require('./controllers/checkout');
+const orders = require('./controllers/transaction');
 const app = express();
 
 // Set local variable title, Tips: local variables can be used in the view template
@@ -148,7 +147,7 @@ app.use(about);
  
 //contact
 app.use('/contact', contact.registerRouter());
-
+app.use('/orders', orders.registerRouter());
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
