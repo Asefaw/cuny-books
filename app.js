@@ -26,6 +26,8 @@ const users =   require('./controllers/users');
 const carts =    require('./controllers/carts');
 const offers = require('./controllers/offers');
 
+const forgot = require('./controllers/forgot');
+const reset = require('./controllers/reset');
 const login_logout =   require('./controllers/login_logout');
 const dashboard = require('./controllers/dashboard');
 
@@ -109,6 +111,8 @@ app.use(function (req, res, next) {
 });
 
 //controllers
+app.use(forgot);
+app.use(reset);
 app.use(login_logout);
 app.use(index);
 app.use(dashboard);
