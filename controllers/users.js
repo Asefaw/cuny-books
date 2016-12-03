@@ -1,9 +1,8 @@
 const User = require('../models/user');
-
+const majors = require('../database/majors.js');
 module.exports = {
     index(req, res){
         if(!req.user){
-            var majors = require('../database/majors.js');
             res.render('signup', {majors: majors});
         }else{
             res.redirect('/user/dashboard');
@@ -27,7 +26,7 @@ module.exports = {
 		var errors = req.validationErrors();
 		if(errors){
 			res.render('signup',{
-				errors: errors
+				errors: errors, majors: majors
 			});
 		}else{
 			 var newUser = new User({
