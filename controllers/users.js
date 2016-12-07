@@ -48,7 +48,7 @@ module.exports = {
 					 	}
 					});
 			 	}else{
-			 		res.render('signup', {status: {msg: 'A User with Email: '+email + ' Already Exsit'}});
+			 		res.render('signup', {status: {msg: 'A User with Email: '+email + ' Already Exsit'}, majors: majors});
 			 	}
 			});
 		}
