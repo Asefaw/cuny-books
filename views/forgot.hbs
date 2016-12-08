@@ -1,5 +1,10 @@
 <!-- Password Recovery Page -->                    
 <div class="forgot-content">
+	{{#if status}}
+        <div class="alert alert-success">
+          <strong>{{status.title}}</strong> {{status.msg}}
+        </div>
+    {{/if}}
     <div class="forgot-box">
         <div class="container">
             <div class="row">

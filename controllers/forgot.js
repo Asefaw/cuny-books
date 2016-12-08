@@ -74,6 +74,7 @@ router.post('/forgot', function(req, res, next) {
 
       var mailOptions = {
         to: user.email,
+        from: 'passwordreset@demo.com',
         subject: 'CUNYBooks Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -84,7 +85,7 @@ router.post('/forgot', function(req, res, next) {
       };
 
       transporter.sendMail(mailOptions, function(err) {
-        req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+        req.flash('success_msg', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
         done(err, 'done');
       });
     }
