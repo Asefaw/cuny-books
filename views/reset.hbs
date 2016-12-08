@@ -1,5 +1,10 @@
 <!-- Reset Password Page -->                    
 <div class="reset-content">
+    {{#if status}}
+        <div class="alert alert-success">
+          <strong>{{status.title}}</strong> {{status.msg}}
+        </div>
+    {{/if}}
     <div class="reset-box">
         <div class="container">
             <div class="row">
@@ -11,9 +16,9 @@
                         </div>
                     </div>
                     <div class="form-bottom">
-                        <form role="form" action="/reset" method="post" class="login-form">
+                        <form role="form" action="/reset/:token" method="post" class="login-form">
                             <div class="form-group">
-                                <label class="sr-only" for="form-email">Email</label>
+                                <label class="sr-only" for="form-password">password</label>
                                 <input type="password" name="password" id="password" placeholder="New Password..." class="form-control">
                             </div>
                             <button type="submit" class="btn">Reset Password!</button>
