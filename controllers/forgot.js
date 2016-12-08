@@ -83,13 +83,20 @@ router.post('/forgot', function(req, res, next) {
       };
 
       transporter.sendMail(mailOptions, function(err) {
-        req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+
+=======
+        req.flash('success_msg', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
         done(err, 'done');
+        res.redirect('/forgot');
       });
     }
   ], function(err) {
     if (err) return next(err);
+<<<<<<< HEAD
     res.redirect('/forgot');
+=======
+    //req.flash('info', 'An e-mail has been sent to ' + req.user.email + ' with further instructions.');
+    //res.redirect('/forgot');
   });
 });
 
