@@ -84,8 +84,9 @@ router.post('/reset/:token', function(req, res) {
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
       };
       transporter.sendMail(mailOptions, function(err) {
-        req.flash('success', 'Success! Your password has been changed.');
+        req.flash('success_msg', 'Success! Your password has been changed.');
         done(err);
+        res.redirect('login');
       });
     }
   ], function(err) {

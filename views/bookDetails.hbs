@@ -33,7 +33,7 @@
         <div class="modal-body">
           <label for="offerBook">Avaliable Books:</label>
           <select class="form-control" form="offerForm" id="offerBook">
-            {{#each listings}}
+            {{#each mybooks}}
               <option value="{{this._id}}">{{this.title}}</option>
             {{/each}}
           </select>

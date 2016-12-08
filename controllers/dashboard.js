@@ -29,9 +29,9 @@ router.get('/user/dashboard', function(req, res){
 			for(var idx in listings) {
 				book_ids.push(listings[idx]._id);
 			}
-			console.log(book_ids);
+			//console.log(book_ids);
 			Offer.getOffers(book_ids, function(offers) {
-				console.log(offers);
+				//console.log(offers);
 				for(var idx in offers) {
 					for(var key in user.listings) {
 						if(offers[idx].book_id == user.listings[key]._id) {
@@ -39,8 +39,8 @@ router.get('/user/dashboard', function(req, res){
 						}
 					}
 				}
-				console.log('User listings');
-				console.log(user.listings);
+				//console.log('User listings');
+			//	console.log(user.listings);
 				Book.getRelBooks(user.major, function(relBooks) {
 					user.relBooks = relBooks;
 					// console.log(relBooks);

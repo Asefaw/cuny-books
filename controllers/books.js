@@ -2,6 +2,8 @@ const express = require('express');
 const Book = require('../models/book');
 const router = express.Router();
 
+var mybooks;
+ 
 module.exports = {
     index(req, res){
         Book.find()
@@ -46,14 +48,17 @@ module.exports = {
     	}
     },
     show(req, res){
-        Book.find({'_id':req.params.id, 'owner':req.user.userName}, function(err, book){
+        Book.find({'owner':req.user.fullName}, function(err, books){ 
+            mybooks = books;
+            if(err)throw err 
+        });
+        Book.findById(req.params.id, function(err, book){
             if(err){
-                 
                 req.flash('error_msg', 'No Books Found');
                 res.redirect('/');
             }else{
-                //res.json(books);
-                 res.render('bookDetails', {book: book});
+                //res.json(books); 
+                 res.render('bookDetails', {book: book, mybooks: mybooks});
             }
         });
     },
