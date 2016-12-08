@@ -402,3 +402,14 @@ html, body {
 }
 
 .form-top-left h2 { margin-top: 10px; }
+
+
+/****** reset page *****/
+.reset-content {
+  background: #bff1f2;
+  height: 90%;
+}
+
+.reset-box {
+    padding: 50px 0 170px 0;
+}
