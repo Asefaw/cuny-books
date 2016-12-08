@@ -46,7 +46,7 @@ module.exports = {
     	}
     },
     show(req, res){
-        Book.findById(req.params.id, function(err, book){
+        Book.find({'_id':req.params.id, 'owner':req.user.userName}, function(err, book){
             if(err){
                  
                 req.flash('error_msg', 'No Books Found');
