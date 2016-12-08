@@ -90,6 +90,7 @@ router.post('/forgot', function(req, res, next) {
     }
   ], function(err) {
     if (err) return next(err);
+    res.redirect('/forgot');
     //req.flash('info', 'An e-mail has been sent to ' + req.user.email + ' with further instructions.');
     //res.redirect('/forgot');
   });
