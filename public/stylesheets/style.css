@@ -34,9 +34,11 @@
   background-color: white;
   border: 1px solid black;
 }
+
 .content-block {
   min-height: 200px;
 }
+
 .info-block {
   padding: 20px 0px;
   min-height: 20px;
@@ -55,14 +57,11 @@
   background-color: transparent;
   color: black;
 }
+
 .listbook-btn {
   width: 100%;
   margin-top: 15px;
  
-}  
-.formhorizontal{
-  display: none;
-}   
 } 
  
 .formhorizontal{
@@ -92,7 +91,7 @@
 
 /****** footer *****/
 .navbar-fixed-bottom {
-  padding-top: 10px;
+  padding-top: 15px;
 }
 
 /****** Index *****/
@@ -216,7 +215,7 @@ html, body {
 .carousel-control.right:hover, .carousel-control.left:hover {
   color: #1d74ff;
 }
- 
+
 
 /****** Contact page *****/
 
@@ -225,27 +224,155 @@ html, body {
   padding-top: 5px;
   margin-left: 10px;
 }
+
 .contact-form-top {
   overflow: hidden;
   padding: 0px 25px 0px 25px;
   text-align: left;
 }
+
 .contact-form {
   margin-left: 10px;
 }
+
 .required {
   color: red;
 }
 
 #contact-button {
- 
- 
   width: 100px; 
- 
-  width: 100px;  
-} 
 }
 
 .form-group.clearfix {
   padding-bottom: 40px;
-} 
+}
+
+
+/****** Login page *****/
+.login-content {
+  background: #bff1f2;
+  height: 90%;
+}
+
+.login-box {
+    padding: 50px 0 170px 0;
+}
+
+.form-box {
+  margin-top: 35px;
+}
+
+.form-top {
+  overflow: hidden;
+  padding: 0 25px 10px 25px;
+  background: #fff;
+  text-align: left;
+  border-top-right-radius: 5px; 
+  border-top-left-radius: 5px;
+  
+}
+
+.form-top-left {
+  float: left;
+  width: 75%;
+  padding-top: 25px;
+}
+
+.form-top-left h3 { margin-top: 0; }
+
+.form-top-right {
+  float: left;
+  width: 25%;
+  padding-top: 5px;
+  font-size: 66px;
+  color: #c5c5c9;
+  line-height: 100px;
+  text-align: right;
+}
+
+.form-bottom {
+  padding: 15px 25px 10px 25px;
+  background: #fff;
+  border-bottom-right-radius: 5px; 
+  border-bottom-left-radius: 5px;
+}
+
+.form-bottom form button.btn {
+  width: 100%;
+  color: #fff;
+  background-color: #0c65ff;
+}
+
+.etc-login-left {
+  float: left;
+  width: 50%;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+.etc-login-right {
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 5px;
+}
+
+.etc-login-form p {
+  color: #414244;
+  font-size: 12px;
+  margin-bottom: 0px;
+  padding-top: 5px;
+}
+
+/****** Sign up page *****/
+
+.signup-content {
+  background: #bff1f2;
+  height: 90%;
+  overflow: scroll;
+}
+
+.field-box {
+  margin-top: 10px;
+  
+}
+
+.help-block {
+  font-size: 13px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.signup-btn {
+  width: 100%;
+  color: #fff;
+  background-color: #0c65ff;
+}
+
+.etc-signup {
+  font-size: 12px;
+  font-weight: bold;
+  color: #6b6c6d;
+  padding-top: 15px;
+  text-align: center;
+}
+
+
+*[role="form signup"] {
+  max-width: 530px;
+  padding: 5px 20px;
+  margin: 0 auto;
+  background-color: #fff;
+  border:black dotted 1px;
+  border-radius: 5px;
+}
+
+*[role="form signup"] h2 {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.checkbox {
+  font-size: 12px;
+  padding-top: 10px;
+  padding-left: 5px;
+}

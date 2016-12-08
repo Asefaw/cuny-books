@@ -20,6 +20,7 @@
   </div>
 </div>
 
+<!-- OfferModal -->
 <div class="modal fade" id="offerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -30,13 +31,39 @@
           <h4 class="modal-title" id="myModalLabel">What whould you like to offer for this book?</h4>
         </div>
         <div class="modal-body">
-          <textarea form="offerForm" name="offerMsg" style="width:100%;"></textarea>
+          <label for="offerBook">Avaliable Books:</label>
+          <select class="form-control" form="offerForm" id="offerBook">
+            {{#each listings}}
+              <option value="{{this._id}}">{{this.title}}</option>
+            {{/each}}
+          </select>
+          <label for="offer">Message: </label>
+          <textarea id="offer" form="offerForm" name="offerMsg" style="width:100%;"></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <form style="display:inline-block;" id="offerForm" method="post" action="/book/offers/new">
             <input type="submit" class="btn btn-primary" value="Sent Offer">
           </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Show Offer Modal -->
+<div class="modal fade" id="showOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Offers for this book</h4>
+        </div>
+        <div id="showOffer-body" class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

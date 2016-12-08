@@ -1,4 +1,4 @@
-<div class="container">
+<div class="signup-content">
     {{#if errors}}
       {{#each errors}}
         <div class="alert alert-danger">{{msg}}</div>
@@ -9,85 +9,67 @@
               <strong>{{status.title}}</strong> {{status.msg}}
             </div>
     {{/if}}
-
-            <form class="form-horizontal" role="form" action="/user/new" method="POST" >
-                <h2>Registration Form</h2>
-                <div class="form-group">
-                    <label for="fullName" class="col-sm-3 control-label">Full Name</label>
-                    <div class="col-sm-9">
-                        <input type="text" name="fullName" id="firstName" placeholder="Full Name" class="form-control" autofocus>
-                        <span class="help-block">Last Name, First Name, eg.: Smith, Harry</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">Email</label>
-                    <div class="col-sm-9">
-                        <input type="email" name="email"  placeholder="Email" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Password</label>
-                    <div class="col-sm-9">
-                        <input type="password" name="password" id="password" placeholder="Password" class="form-control" required="true">
-                    </div>
-                </div> 
-                <div class="form-group">
-                    <label for="country" class="col-sm-3 control-label">College</label>
-                    <div class="col-sm-9">
-                        <select id="college" name="college" class="form-control"> 
-                            <option></option>
-                            <option>Medgar Evers College</option>
-                            <option>City College</option>
-                            <option>City Tech</option>
-                            <option>Hunter College</option>
-                            <option>York College</option>
-                            <option>John Jay College</option>
-                            <option>Brooklyn College</option>
-                            <option>Queens College</option>
-                            <option>York College</option>
-                            <option>Borough of Manhattan CC</option>
-                            <option>Bronx Community College</option>
-                            <option>CUNY School of Law</option>
-                            <option>CUNY School of Medicine</option>
-                            <option>CUNY School of Public Health</option>
-                            <option>College of Staten Island</option>
-                            <option>Guttman Community College</option>
-                            <option>Hostos Community College</option>
-                            <option>Kingsborough CC</option>
-                            <option>LaGuardia Community College</option>
-                            <option>NYC College of Technology</option>
-                            <option>Queensborough CC</option>
-                            <option>School of Professional Studies</option>
-                            <option>The Graduate Center</option>
-                            <option>Baruch College</option>
-
-                        </select>
-                    </div>
-                </div> 
-                <div class="form-group">
-                    <label for="major" class="col-sm-3 control-label">Major</label>
-                    <div class="col-sm-9">
-                        <select id="major" name="major" class="form-control">
-                            <option></option>
-                            {{#each majors}}
-                                <option>{{this}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                </div> 
-                <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-3">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="terms">I accept <a href="#">terms</a>
-                            </label>
+    <div class="signup-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 field-box">
+                   <div class="signup-form">
+                        <form method="POST" action="/user/new" role="form signup">
+                        <div class="form-group">
+                            <h2>Create account</h2>
                         </div>
-                    </div>
-                </div> <!-- /.form-group -->
-                <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
-                    </div>
+                        <div class="form-group">
+                            <label class="control-label" for="fullName">Full Name</label>
+                            <input id="firstName"  type="text" name="fullName" placeholder="Last Name, First Name" class="form-control">
+                            <span class="help-block">Example: Smith, Harry</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="control-label">Email</label>
+                            <input type="email" name="email"  placeholder="Email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">Password</label>
+                            <input type="password" name="password" id="password" placeholder="Password" class="form-control" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="country" class="control-label">College</label>
+                            <select id="college" name="college" class="form-control"> 
+                                <option>-- Select College --</option>
+                                <option>City College</option>
+                                <option>City Tech</option>
+                                <option>Hunter College</option>
+                                <option>York College</option>
+                                <option>John Jay College</option>
+                                <option>Brooklyn College</option>
+                                <option>Queens College</option>
+                                <option>York College</option>
+                            </select>
+                        </div> 
+                         <div class="form-group">
+                            <label for="major" class="control-label">Major</label>
+                            <select id="major" name="major" class="form-control">
+                                <option>-- Select Major --</option>
+                                {{#each majors}}
+                                    <option>{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div> 
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="terms">By creating an account, you agree to our <a href="#">Terms of Use</a>
+                                </label>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <button type="submit" class="btn signup-btn">Create your account</button>
+                        </div>
+                        
+                        <p class="etc-signup">Already have an account? <a href="/user/login">Sign in</a></p>
+                    </form>
+                   </div>
                 </div>
-            </form> <!-- /form --> 
-        </div> <!-- ./container -->
+            </div>  
+        </div>
+    </div>
+</div>
