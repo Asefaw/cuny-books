@@ -24,7 +24,11 @@ Web Framework:
 
 Live Demo of the Application:
 
+Heroku:
+
 https://cunybooks.herokuapp.com/
 
+YouTube:
 
+https://youtu.be/rN3r5J2Yc2s
 
