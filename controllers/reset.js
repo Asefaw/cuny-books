@@ -1,11 +1,11 @@
 var express = require('express');
 var User = require('../models/user');
-var nodemailer = require('nodemailer');
+var bcrypt = require('bcryptjs');
 var async = require('async');
+var nodemailer = require('nodemailer');
 var xoauth2 = require('xoauth2');  //generates XOAUTH2 login tokens from provided Client and User credentials.
 var xoauth2gen;
 var router = express.Router();
-
 
 router.get('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -19,28 +19,33 @@ router.get('/reset/:token', function(req, res) {
   });
 });
 
+
 router.post('/reset/:token', function(req, res) {
   async.waterfall([
     function(done) {
-      console.log('user resettoken ' + req.params.token);
-      User.find({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (!user) {
           req.flash('error', 'Password reset token is invalid or has expired.');
           return res.redirect('back');
         }
-        
+
         user.password = req.body.password;
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
 
-        user.save(function(err) {
-          if(err)
-            console.log("error!!!1");
-        });
+        bcrypt.genSalt(10, function(err, salt) {
+          bcrypt.hash(user.password, salt, function(err, hash) {
+              user.password = hash;
+              User.update({_id: user.id}, {password: user.password}, function(err){
+                  done(err, user);
+              });
+          });
+       });
+
       });
     },
     function(user, done) {
-
+       
        xoauth2gen = xoauth2.createXOAuth2Generator({  //to initialize Token Generator
          user: 'cunybooks3@gmail.com',
          clientId: '154181963287-1fep26r070epelqponeo5catvps88jkk.apps.googleusercontent.com',
@@ -74,7 +79,6 @@ router.post('/reset/:token', function(req, res) {
 
       var mailOptions = {
         to: user.email,
-        from: 'CUNYBooks',
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
@@ -82,11 +86,13 @@ router.post('/reset/:token', function(req, res) {
 
       transporter.sendMail(mailOptions, function(err) {
         req.flash('success_msg', 'Success! Your password has been changed.');
+        res.redirect('/user/login');
         done(err);
       });
     }
   ], function(err) {
-    res.redirect('/');
+     if (err)
+      console.log(err);
   });
 });
 
