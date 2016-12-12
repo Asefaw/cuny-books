@@ -6,10 +6,6 @@ var xoauth2 = require('xoauth2');  //generates XOAUTH2 login tokens from provide
 var xoauth2gen;
 var router = express.Router();
 
-//for testing
-/*router.get('/reset', function(req, res) {
-  res.render('reset');
-})*/
 
 router.get('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -26,20 +22,20 @@ router.get('/reset/:token', function(req, res) {
 router.post('/reset/:token', function(req, res) {
   async.waterfall([
     function(done) {
+      console.log('user resettoken ' + req.params.token);
       User.find({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (!user) {
           req.flash('error', 'Password reset token is invalid or has expired.');
           return res.redirect('back');
         }
-
+        
         user.password = req.body.password;
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
 
         user.save(function(err) {
-          req.logIn(user, function(err) {
-            done(err, user);
-          });
+          if(err)
+            console.log("error!!!1");
         });
       });
     },

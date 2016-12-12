@@ -28,7 +28,7 @@ var userSchema = mongoose.Schema({
   	resetPasswordExpires: Date
 });
 
-userSchema.pre('save', function(next) {
+/*userSchema.pre('save', function(next) {
   var user = this;
   var SALT_FACTOR = 5;
 
@@ -44,7 +44,7 @@ userSchema.pre('save', function(next) {
     });
   });
 });
-
+*/
 
 var User = module.exports = mongoose.model('User', userSchema);
 
