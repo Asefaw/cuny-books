@@ -267,8 +267,12 @@ html, body {
   padding: 0 25px 10px 25px;
   background: #fff;
   text-align: left;
+  text-align: left;
   border-top-right-radius: 5px; 
   border-top-left-radius: 5px;
+  border-top: black dotted 2px;
+  border-left: black dotted 2px;
+  border-right: black dotted 2px;
   
 }
 
@@ -295,6 +299,9 @@ html, body {
   background: #fff;
   border-bottom-right-radius: 5px; 
   border-bottom-left-radius: 5px;
+  border-bottom: black dotted 2px;
+  border-left: black dotted 2px;
+  border-right: black dotted 2px;
 }
 
 .form-bottom form button.btn {
@@ -375,4 +382,46 @@ html, body {
   font-size: 12px;
   padding-top: 10px;
   padding-left: 5px;
+}
+
+/****** forgot page *****/
+.forgot-content {
+  background: #bff1f2;
+  height: 90%;
+}
+
+.forgot-box {
+    padding: 50px 0 170px 0;
+}
+
+
+.form-top-left {
+  float: left;
+  width: 75%;
+  padding-top: 25px;
+}
+
+.form-top-left h2 { margin-top: 10px; }
+
+
+/****** reset page *****/
+.reset-content {
+  background: #bff1f2;
+  height: 90%;
+}
+
+.reset-box {
+    padding: 50px 0 170px 0;
+}
+
+
+/****** reset page *****/
+
+.contact-sent {
+  margin-top: 30px;
+  padding: 15px 0px 10px 20px;
+}
+
+.contact-sent p {
+  padding-top: 4px;
 }
