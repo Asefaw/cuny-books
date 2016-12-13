@@ -87,12 +87,11 @@ router.post('/reset/:token', function(req, res) {
       transporter.sendMail(mailOptions, function(err) {
         req.flash('success_msg', 'Success! Your password has been changed.');
         res.redirect('/user/login');
-        done(err);
+        done(err, 'done');
       });
     }
   ], function(err) {
-     if (err)
-      console.log(err);
+     if (err) return next(err);
   });
 });
 
