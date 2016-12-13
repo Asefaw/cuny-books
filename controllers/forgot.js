@@ -86,9 +86,9 @@ router.post('/forgot', function(req, res, next) {
 
       transporter.sendMail(mailOptions, function(err) {
         req.flash('success_msg', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-
-        done(err, 'done');
         res.redirect('/forgot');
+        done(err, 'done');
+        
       });
     }
   ], function(err) {
